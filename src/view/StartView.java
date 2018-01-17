@@ -57,7 +57,7 @@ public class StartView implements MainView {
         startButton.setLayoutY(700);
         gamePane.getChildren().add(startButton);
         rootPane.getChildren().add(gamePane);
-        neuerFancyButton = new Button("hallo tobi du nudel");
+        neuerFancyButton = new Button("hallo tobi du nudel!");
         neuerFancyButton.setLayoutX(250);
         neuerFancyButton.setLayoutY(200);
         gamePane.getChildren().add(neuerFancyButton);
