@@ -70,5 +70,9 @@ public class StartView implements MainView {
             System.out.println("game started");
         });
 
+        neuerFancyButton.setOnAction(e -> {
+            System.out.println("Du Nudel!");
+        });
+
     }
 }
