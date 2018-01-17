@@ -71,7 +71,7 @@ public class StartView implements MainView {
         });
 
         neuerFancyButton.setOnAction(e -> {
-            System.out.println("Du Nudel!");
+            System.out.println("Du Nudel!!!");
         });
 
     }
