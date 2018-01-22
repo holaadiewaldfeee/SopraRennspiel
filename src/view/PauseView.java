@@ -9,57 +9,56 @@ import javafx.scene.text.Text;
 
 public class PauseView implements MainView{
 
-    private static ViewManager myMother;
-
+    private static ViewManager father;
     //The scene where all is stacked up
     private Scene scene;
-
-    public Scene getScene() {
-        return scene;
-    }
-
     //Stackpane, where all dialogs are stacked
     private StackPane rootPane;
 
     // Buttons
-    public Button startButton;
-    public Button neuerFancyButton;
+    public Button pauseEnde;
 
-    /**
-     * GameView object for setting up the GUI
-     *
-     * @param stage the primary stage
-     */
+
+    public Scene getScene() {
+
+        return scene;
+    }
+
+
     public PauseView(ViewManager vm) {
-        myMother = vm;
+
+        father = vm;
         rootPane = new StackPane();
         scene = new Scene(rootPane, 1300, 800);
         setUpGameWindow();
         setUpInputHandler();
     }
 
-    /**
-     * Sets up the main game window with the course as panebackground,
-     * the car in the initial Position
-     */
+
     public void setUpGameWindow() {
+
         Pane gamePane = new Pane();
         Text text = new Text("Pause");
-        text.setLayoutX(650);
+        text.setLayoutX(400);
         text.setLayoutY(100);
         text.setFont(new Font("Arial Black", 50));
         gamePane.getChildren().add(text);
-        startButton = new Button("Pauseeee ende");
-        startButton.setLayoutX(650);
-        startButton.setLayoutY(700);
-        gamePane.getChildren().add(startButton);
+
+        pauseEnde = new Button("hier pause antimaken");
+        pauseEnde.setLayoutY(50);
+        pauseEnde.setLayoutX(50);
+        pauseEnde.setStyle("-fx-font-size: 20pt;");
+        gamePane.getChildren().add(pauseEnde);
+
         rootPane.getChildren().add(gamePane);
 
     }
 
+
     private void setUpInputHandler() {
-        startButton.setOnAction(e -> {
-            myMother.changeScene(1);
+
+        pauseEnde.setOnAction(e -> {
+            father.changeScene(1);
             System.out.println("game started");
         });
 

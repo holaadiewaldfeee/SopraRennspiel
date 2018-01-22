@@ -1,26 +1,20 @@
 package view;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import model.Car;
 
-/**
- * Contains every GUI element
- */
 public class StartView implements MainView {
 
-    private static ViewManager myMother;
-
+    //remember father view
+    private static ViewManager father;
     //The scene where all is stacked up
     private Scene scene;
-
-    public Scene getScene() {
-        return scene;
-    }
-
     //Stackpane, where all dialogs are stacked
     private StackPane rootPane;
 
@@ -28,50 +22,50 @@ public class StartView implements MainView {
     public Button startButton;
     public Button neuerFancyButton;
 
-    /**
-     * GameView object for setting up the GUI
-     *
-     * @param stage the primary stage
-     */
+
+    public Scene getScene() {
+
+        return scene;
+    }
+
+
     public StartView(ViewManager vm) {
-        myMother = vm;
+
+        father = vm;
         rootPane = new StackPane();
         scene = new Scene(rootPane, 1300, 800);
         setUpGameWindow();
         setUpInputHandler();
     }
 
-    /**
-     * Sets up the main game window with the course as panebackground,
-     * the car in the initial Position
-     */
+
     public void setUpGameWindow() {
+
         Pane gamePane = new Pane();
-        Text text = new Text("Hallo!");
-        text.setLayoutX(650);
+
+        Text text = new Text("Rennspiel_StartView");
+        text.setLayoutX(400);
         text.setLayoutY(100);
         text.setFont(new Font("Arial Black", 50));
         gamePane.getChildren().add(text);
-        startButton = new Button("Start");
-        startButton.setLayoutX(650);
+
+        startButton = new Button("START");
+        startButton.setLayoutX(1050);
         startButton.setLayoutY(700);
+        startButton.setStyle("-fx-font-size: 30pt;");
         gamePane.getChildren().add(startButton);
+
         rootPane.getChildren().add(gamePane);
-        neuerFancyButton = new Button("hallo tobi du nudel!");
-        neuerFancyButton.setLayoutX(250);
-        neuerFancyButton.setLayoutY(200);
-        gamePane.getChildren().add(neuerFancyButton);
+
 
     }
 
-    private void setUpInputHandler() {
-        startButton.setOnAction(e -> {
-            myMother.changeScene(1);
-            System.out.println("game started");
-        });
 
-        neuerFancyButton.setOnAction(e -> {
-            System.out.println("Du Nudel!");
+    private void setUpInputHandler() {
+
+        startButton.setOnAction(e -> {
+            father.changeScene(1);
+            System.out.println("game started");
         });
 
     }

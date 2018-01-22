@@ -1,36 +1,35 @@
 package view;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
+import controller.GameController;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for view-management (GUI elements)
+ */
 public class ViewManager {
 
+    //new stage
     public Stage stage;
-    //3 scenen abspeichern
+    //3 scenes for switching between start/game/pause
     public List<MainView> sceneList = new ArrayList<>();
     //The scene where all is stacked up
     private Scene scene;
 
+
     public Scene getScene() {
+
         return scene;
     }
 
-    /**
-     * GameView object for setting up the GUI
-     *
-     * @param stage the primary stage
-     */
+
     public ViewManager(Stage stage) {
+
         this.stage = stage;
-        stage.setTitle("Rennspiel");
-        stage.setResizable(true);
+        stage.setTitle("Rennspiel_Sabrina_Boehm");
+        stage.setResizable(false);
         stage.sizeToScene();
 
         StartView sv = new StartView(this);
@@ -43,13 +42,13 @@ public class ViewManager {
         sceneList.add(pv);
 
         changeScene(0);
-        // stage.setScene(changeScene(index));
     }
 
+    //method for scene-changing
     public void changeScene(int index) {
+
         stage.setScene(sceneList.get(index).getScene());
         System.out.println(index);
-        // return sceneList.get(index).getScene();
     }
 
 

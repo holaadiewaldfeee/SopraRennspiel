@@ -15,6 +15,7 @@ public class GameModel {
      * Creates a gameModel, that handles most of the actions
      */
     public GameModel() {
+
         //initialize Car, default data in GameView
         car = initializeCar();
     }
@@ -25,7 +26,9 @@ public class GameModel {
      * @return the initialized car
      */
     private Car initializeCar() {
+
         //initialize a new car and give it the init values set in the static variables
+
         car = new Car();
         return car;
     }
