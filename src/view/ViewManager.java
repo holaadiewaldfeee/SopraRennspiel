@@ -3,6 +3,8 @@ package view;
 import controller.GameController;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Car;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,5 +53,10 @@ public class ViewManager {
         System.out.println(index);
     }
 
-
+    public void render(Car car){
+        for (MainView bar : sceneList
+             ) {
+            bar.render(car);
+        }
+    }
 }

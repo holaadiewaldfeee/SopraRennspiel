@@ -8,10 +8,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import model.Car;
 
 public class GameView implements MainView {
 
@@ -32,6 +34,7 @@ public class GameView implements MainView {
 
         return scene;
     }
+
 
     public GameView(ViewManager vm) {
 
@@ -120,5 +123,9 @@ public class GameView implements MainView {
             father.changeScene(2);
             System.out.println("pause");
         });
+    }
+
+    public void render(Car c){
+
     }
 }

@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import model.Car;
 
 public class PauseView implements MainView{
 
@@ -22,6 +23,11 @@ public class PauseView implements MainView{
     public Scene getScene() {
 
         return scene;
+    }
+
+    @Override
+    public void render(Car car) {
+
     }
 
 

@@ -28,6 +28,11 @@ public class StartView implements MainView {
         return scene;
     }
 
+    @Override
+    public void render(Car car) {
+
+    }
+
 
     public StartView(ViewManager vm) {
 

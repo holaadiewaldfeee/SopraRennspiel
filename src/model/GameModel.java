@@ -6,6 +6,8 @@ package model;
  */
 public class GameModel {
 
+
+
     /**
      * The car that is driven on the racetrack
      */
@@ -30,6 +32,14 @@ public class GameModel {
         //initialize a new car and give it the init values set in the static variables
 
         car = new Car();
+        return car;
+    }
+
+    public void update(){
+        this.car.update();
+    }
+
+    public Car getCar() {
         return car;
     }
 }
