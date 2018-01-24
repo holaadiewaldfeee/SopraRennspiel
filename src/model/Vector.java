@@ -1,13 +1,13 @@
 package model;
 
-class Vector2 {
+class Vector {
     double x;
     double y;
 
-    Vector2(){
+    Vector(){
     }
 
-    Vector2(double x, double y) {
+    Vector(double x, double y) {
         this.x = x;
         this.y = y;
     }

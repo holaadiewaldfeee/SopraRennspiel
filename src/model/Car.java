@@ -11,8 +11,8 @@ public class Car {
     private int mass;
     private float speed;
     private float direction;
-    private Vector2 position;
-    private Vector2 size;
+    private Vector position;
+    private Vector size;
 
     private Image look;
 
@@ -20,8 +20,8 @@ public class Car {
         mass = 1000;
         speed = 0.0f;
         direction = 0;
-        position = new Vector2(500.0d, 300.0d);
-        size = new Vector2(5.0d, 5.0d);
+        position = new Vector(500.0d, 300.0d);
+        size = new Vector(5.0d, 5.0d);
         look = new Image("resources/car/car_black_1.png");
 
     }
@@ -45,7 +45,7 @@ public class Car {
         return speed;
     }
 
-    public Vector2 getPosition() {
+    public Vector getPosition() {
         return position;
     }
 
