@@ -14,35 +14,26 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import model.Car;
+import model.GameModel;
 
-public class GameView implements MainView {
+public class GameView implements View {
 
-    //remember father view
-    private static ViewManager father;
     //The scene where all is stacked up
     private Scene scene;
     //Stackpane, where all dialogs are stacked
     private StackPane rootPane;
     private Pane gamePane;
 
+    private Rectangle car;
+
     //Buttons
     public Button backToStartView;
     public Button pause;
 
-
-    public Scene getScene() {
-
-        return scene;
-    }
-
-
-    public GameView(ViewManager vm) {
-
-        father = vm;
+    public GameView() {
         rootPane = new StackPane();
         scene = new Scene(rootPane, 1300, 800);
-        setUpGameWindow();
-        setUpInputHandler();
+        setupGameWindow();
     }
 
     /**
@@ -50,29 +41,24 @@ public class GameView implements MainView {
      * the car in the initial Position
      */
     //Sets up main game window
-    public void setUpGameWindow() {
+    public void setupGameWindow() {
 
         gamePane = new Pane();
 
         Text text = new Text("Rennspiel_GameView");
-        text.setLayoutX(400);
-        text.setLayoutY(100);
-        text.setFont(new Font("Arial Black", 50));
-
+        text.setLayoutX(10);
+        text.setLayoutY(20);
+        text.setFont(new Font("Arial Black", 20));
 
         //obligatory
         backToStartView = new Button("zurück ins Start Menu");
-        backToStartView.setLayoutX(650);
+        backToStartView.setLayoutX(1000);
         backToStartView.setLayoutY(700);
-
 
         pause = new Button("hier pause maken");
         pause.setLayoutY(50);
         pause.setLayoutX(50);
         pause.setStyle("-fx-font-size: 20pt;");
-
-
-
 
         //test
         Ellipse ellipse = new Ellipse();
@@ -86,14 +72,6 @@ public class GameView implements MainView {
         ellipse.setFill(Color.TRANSPARENT);
         ellipse.setStroke(Color.GRAY);
         ellipse.setStrokeWidth(100);
-        /*Ellipse ellipse2 = new Ellipse();
-        ellipse2.setCenterX(650);
-        ellipse2.setCenterY(400);
-        // Radius X
-        ellipse2.setRadiusX(450);
-        // Radius Y
-        ellipse2.setRadiusY(250);
-        */
         BorderPane border = new BorderPane();
         ImageView imgView = new ImageView(new Image("resources/racetrack/land_grass04.png"));
         imgView.setScaleX(1200);
@@ -104,28 +82,26 @@ public class GameView implements MainView {
         gamePane.getChildren().add(border);
 
         gamePane.getChildren().add(ellipse);
-//        gamePane.getChildren().add(ellipse2);
         gamePane.getChildren().add(backToStartView);
         gamePane.getChildren().add(text);
         gamePane.getChildren().add(pause);
+
+        car = new Rectangle(100,100,2.027,4.255);
+        gamePane.getChildren().add(car);
         rootPane.getChildren().add(gamePane);
     }
 
-
-    private void setUpInputHandler() {
-
-        backToStartView.setOnAction(e -> {
-            father.changeScene(0);
-            System.out.println("game started");
-        });
-
-        pause.setOnAction(e -> {
-            father.changeScene(2);
-            System.out.println("pause");
-        });
+    public Scene getScene() {
+        return scene;
     }
 
-    public void render(Car c){
-
+    public void render(GameModel m) {
+        Car c = m.getCar();
+        c.update();
+        car.relocate(c.getX(), c.getY());
+        car.setScaleX(c.getWidth());
+        car.setScaleY(c.getHeight());
+        car.setRotate(c.getDirection());
+        car.setFill(new ImagePattern(c.getLook()));
     }
 }

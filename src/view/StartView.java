@@ -1,77 +1,62 @@
 package view;
 
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.Button;;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import model.Car;
+import model.GameModel;
 
-public class StartView implements MainView {
+public class StartView implements View {
 
-    //remember father view
-    private static ViewManager father;
+
     //The scene where all is stacked up
     private Scene scene;
     //Stackpane, where all dialogs are stacked
     private StackPane rootPane;
+    private Pane gamePane;
 
-    // Buttons
-    public Button startButton;
-    public Button neuerFancyButton;
-
-
-    public Scene getScene() {
-
-        return scene;
-    }
-
-    @Override
-    public void render(Car car) {
-
-    }
-
-
-    public StartView(ViewManager vm) {
-
-        father = vm;
+    public StartView() {
         rootPane = new StackPane();
         scene = new Scene(rootPane, 1300, 800);
-        setUpGameWindow();
-        setUpInputHandler();
+        setupGameWindow();
     }
 
 
-    public void setUpGameWindow() {
+    public Button backToStartView;
+    public Button pause;
 
-        Pane gamePane = new Pane();
+
+    //Sets up main start window
+    public void setupGameWindow() {
+
+        gamePane = new Pane();
 
         Text text = new Text("Rennspiel_StartView");
-        text.setLayoutX(400);
-        text.setLayoutY(100);
-        text.setFont(new Font("Arial Black", 50));
+        text.setLayoutX(10);
+        text.setLayoutY(20);
+        text.setFont(new Font("Arial Black", 20));
+
+        //obligatory
+        backToStartView = new Button("zurück ins Start Menu");
+        backToStartView.setLayoutX(1000);
+        backToStartView.setLayoutY(700);
+
+
+        gamePane.getChildren().add(backToStartView);
         gamePane.getChildren().add(text);
-
-        startButton = new Button("START");
-        startButton.setLayoutX(1050);
-        startButton.setLayoutY(700);
-        startButton.setStyle("-fx-font-size: 30pt;");
-        gamePane.getChildren().add(startButton);
-
+        // gamePane.getChildren().add(pause);
         rootPane.getChildren().add(gamePane);
 
 
     }
+    public Scene getScene() {
+        return scene;
+    }
 
-
-    private void setUpInputHandler() {
-
-        startButton.setOnAction(e -> {
-            father.changeScene(1);
-            System.out.println("game started");
-        });
+    @Override
+    public void render(GameModel model) {
 
     }
 }

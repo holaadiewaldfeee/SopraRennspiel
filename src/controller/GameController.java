@@ -1,101 +1,72 @@
 package controller;
 
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 import model.GameModel;
-import view.ViewManager;
+import view.GameView;
+import view.View;
 
 
-public class GameController {
+public class GameController implements Controller {
 
-    private GameModel gameModel;
-    private ViewManager view;
-    private Scene scene;
-    private boolean help = false;
+    private GameView gameView;
+    // Main game gameModel
+    private static GameModel gameModel;
 
-
-    public GameController(GameModel gameModel, ViewManager view) {
-        this.view = view;
-        this.gameModel = gameModel;
-        this.scene = view.stage.getScene();
-        // Set up keylistener
-        setUpInputHandler();
+    public GameController(GameModel model) {
+        gameView = new GameView();
+        gameModel = model;
+        setupInteraction();
     }
 
-
-    /**
-     * Updates all needed dependencies every frame
-     *
-     * @param timeDifferenceInSeconds the time passed since last frame
-     */
-    public void updateContinuously(double timeDifferenceInSeconds) {
-        // :todo hier uodate oder so von GameModel wegen auto und so und vllt render methode zum auto zeichnen oder auh nicht
-        System.out.println(gameModel.getCar().getX() + " " + gameModel.getCar().getY());
-
-        // Sage dem model, dass jetzt zeit vergangen ist und ein neuer update zyklus abgeschlossen ist
-        // wenn wir die update methode des models aufrufen sollen alle seine informationen aktualisiert werden :)
-        gameModel.update();
-        this.view.render(gameModel.getCar());
+    @Override
+    public void update() {
+        gameView.render(gameModel);
+        if (gameModel.getCar().getSpeed() != 0.0d) {
+            //System.out.println(gameModel.getCar().getX() + " " + gameModel.getCar().getY());
+            System.out.println(gameModel.getCar().getSpeed());
+        }
     }
 
-    private void setUpInputHandler() {
-        /**----------------------------------------
-         * Useful actions:
-         * setOnKeyPressed, setOnKeyReleased
-         */
-        System.out.println("fooooooooooo");
-        //for keyboard input
-        scene.setOnKeyPressed(
-                new EventHandler<KeyEvent>() {
-                    public void handle(KeyEvent e) {
-                        String code = e.getCode().toString();
-                        System.out.println(code);
-                        if (e.getCode() == KeyCode.P) {
-                            //klappt so noch nicht mit wieder p zurück ins spiel
-                            if (!help) {
-                                help = true;
-                                view.changeScene(2);
-                                System.out.println("heheh");
-                            } else {
-                                view.changeScene(1);
-                                System.out.println("ihihihihihih");
-                            }
-                        }
-                        if (e.getCode() == KeyCode.ENTER) {
-                            view.changeScene(1);
-                        }
-                    }
-                });
+    @Override
+    public void render() {
+    }
 
-        view.sceneList.get(1).getScene().setOnKeyPressed(
-                new EventHandler<KeyEvent>() {
-                    public void handle(KeyEvent e) {
-                        // TODO: hier auf den rihtigen button prüfen
-                        //System.out.println("pause gemaked");
-                        //view.changeScene(2);
-                        if (e.getCode() == KeyCode.LEFT) {
-                            gameModel.getCar().setSpeed(-1,0);
-                        }
-                        if (e.getCode() == KeyCode.RIGHT) {
-                            gameModel.getCar().setSpeed(1,0);
-                        }
-                        if (e.getCode() == KeyCode.UP) {
-                            gameModel.getCar().setSpeed(0,-1);
-                        }
-                        if (e.getCode() == KeyCode.DOWN) {
-                            gameModel.getCar().setSpeed(0,1);
-                        }
-                    }
-                });
+    @Override
+    public void setupInteraction() {
+        gameView.backToStartView.setOnAction(e -> {
+            System.out.println("game started");
+        });
 
-        view.sceneList.get(2).getScene().setOnKeyPressed(
-                new EventHandler<KeyEvent>() {
-                    public void handle(KeyEvent e) {
-                        System.out.println("pause unmaked");
-                        view.changeScene(1);
-                    }
-                });
+        gameView.pause.setOnAction(e -> {
+            System.out.println("Pause maked!");
+        });
+
+        gameView.getScene().setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.A) {
+                System.out.println("left");
+                gameModel.getCar().rotate(-3);
+            }
+            if (e.getCode() == KeyCode.D) {
+                System.out.println("right");
+                gameModel.getCar().rotate(3);
+            }
+            if (e.getCode() == KeyCode.W) {
+                System.out.println("up");
+                gameModel.getCar().setSpeed(-1);
+            }
+            if (e.getCode() == KeyCode.S) {
+                System.out.println("down");
+                gameModel.getCar().setSpeed(2);
+            }
+            if (e.getCode() == KeyCode.ESCAPE){
+                System.out.println("hadebye");
+                System.exit(0);
+            }
+        });
+    }
+
+    public View getView(){
+        return this.gameView;
     }
 }

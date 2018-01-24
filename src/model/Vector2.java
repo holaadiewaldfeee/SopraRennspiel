@@ -1,24 +1,22 @@
 package model;
 
-class Vector2 {
-    float x;
-    float y;
+class Vector2<T extends Double, V extends Double> {
+    T x;
+    V y;
 
-    Vector2() {
-        this.x = 0;
-        this.y = 0;
+    Vector2(){
     }
 
-    Vector2(float x, float y) {
+    Vector2(T x, V y) {
         this.x = x;
         this.y = y;
     }
 
-    public float getX(){
+    public T getX(){
         return this.x;
     }
 
-    public float getY(){
+    public V getY(){
         return this.y;
     }
 
@@ -26,8 +24,8 @@ class Vector2 {
         return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
     }
 
-    void scale(float s){
+    /*void scale(float s){
         this.x *= s;
         this.y *= s;
-    }
+    }*/
 }

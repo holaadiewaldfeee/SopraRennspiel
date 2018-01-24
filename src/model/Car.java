@@ -9,49 +9,67 @@ import javafx.scene.image.Image;
 public class Car {
 
     private int mass;
-    private Vector2 speed;
-    private Vector2 position;
+    private float speed;
+    private float direction;
+    private Vector2<Double, Double> position;
+    private Vector2<Double, Double> size;
 
-    private javafx.scene.image.Image look;
+    private Image look;
 
     public Car() {
         mass = 1000;
-        speed = new Vector2();
-        position = new Vector2(500, 300);
-        look = new javafx.scene.image.Image("resources/car/car_black_1.png");
+        speed = 0.0f;
+        direction = 0;
+        position = new Vector2<Double, Double>(500.0d, 300.0d);
+        size = new Vector2<Double, Double>(5.0d, 5.0d);
+        look = new Image("resources/car/car_black_1.png");
 
     }
 
-    void update() {
-        if (speed.length() > 0.005f) {
-            speed.scale(0.99f);
+    public void update() {
+        if (Math.abs(speed) > 0.005f) {
+            speed *= 0.99f;
         }
-        this.position.x += this.speed.x;
-        this.position.y += this.speed.y;
+        this.position.x += this.speed;
     }
 
-    public void setSpeed(float x, float y) {
-        this.speed.x = x;
-        this.speed.y = y;
+    public void setSpeed(float x) {
+        this.speed = x;
     }
 
-    public String getSpeed() {
-        return speed.x + " " + speed.y;
+    public void rotate(float x) {
+        this.direction += x;
+    }
+
+    public double getSpeed() {
+        return speed;
     }
 
     public Vector2 getPosition() {
         return position;
     }
 
-    public float getX(){
+    public double getX(){
         return this.position.getX();
     }
 
-    public float getY(){
+    public double getY(){
         return this.position.getY();
+    }
+
+    public double getWidth(){
+        return this.size.getX();
+    }
+
+    public double getHeight(){
+        return this.size.getY();
     }
 
     public Image getLook() {
         return look;
+    }
+
+    public double getDirection() {
+        return this.direction;
     }
 }

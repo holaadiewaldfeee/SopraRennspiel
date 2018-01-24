@@ -6,68 +6,61 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import model.Car;
+import model.GameModel;
 
-public class PauseView implements MainView{
+public class PauseView implements View {
 
-    private static ViewManager father;
+
     //The scene where all is stacked up
     private Scene scene;
     //Stackpane, where all dialogs are stacked
     private StackPane rootPane;
+    private Pane gamePane;
 
-    // Buttons
-    public Button pauseEnde;
+    public Button backToStartView;
+    public Button pause;
 
-
-    public Scene getScene() {
-
-        return scene;
+    public PauseView() {
+        rootPane = new StackPane();
+        scene = new Scene(rootPane, 1300, 800);
+        //setupGameWindow();
     }
 
     @Override
-    public void render(Car car) {
+    public void setupGameWindow() {
 
     }
 
+    //Sets up main pause window
+   /* public void setupGameWindow() {
 
-    public PauseView(ViewManager vm) {
+        gamePane = new Pane();
 
-        father = vm;
-        rootPane = new StackPane();
-        scene = new Scene(rootPane, 1300, 800);
-        setUpGameWindow();
-        setUpInputHandler();
-    }
+        Text text = new Text("Rennspiel_PauseViewlalalalal");
+        text.setLayoutX(10);
+        text.setLayoutY(20);
+        text.setFont(new Font("Arial Black", 20));
 
+        //obligatory
+        backToStartView = new Button("zurück ins Start Menu");
+        backToStartView.setLayoutX(1000);
+        backToStartView.setLayoutY(700);
 
-    public void setUpGameWindow() {
+        pause = new Button("hier pause maken");
+        pause.setLayoutY(50);
+        pause.setLayoutX(50);
+        pause.setStyle("-fx-font-size: 20pt;");
 
-        Pane gamePane = new Pane();
-        Text text = new Text("Pause");
-        text.setLayoutX(400);
-        text.setLayoutY(100);
-        text.setFont(new Font("Arial Black", 50));
+        gamePane.getChildren().add(backToStartView);
         gamePane.getChildren().add(text);
-
-        pauseEnde = new Button("hier pause antimaken");
-        pauseEnde.setLayoutY(50);
-        pauseEnde.setLayoutX(50);
-        pauseEnde.setStyle("-fx-font-size: 20pt;");
-        gamePane.getChildren().add(pauseEnde);
-
+        gamePane.getChildren().add(pause);
         rootPane.getChildren().add(gamePane);
+    }*/
 
+    public Scene getScene() {
+        return scene;
     }
 
-
-    private void setUpInputHandler() {
-
-        pauseEnde.setOnAction(e -> {
-            father.changeScene(1);
-            System.out.println("game started");
-        });
-
+    public void render(GameModel model) {
     }
-
 }
