@@ -6,7 +6,7 @@ package model;
  */
 public class GameModel {
 
-
+//hier auch obstacle instanzen machen
 
     /**
      * The car that is driven on the racetrack

@@ -86,7 +86,7 @@ public class GameView implements View {
         gamePane.getChildren().add(text);
         gamePane.getChildren().add(pause);
 
-        car = new Rectangle(100,100,2.027,4.255);
+        car = new Rectangle(1,1);
         gamePane.getChildren().add(car);
         rootPane.getChildren().add(gamePane);
     }

@@ -24,7 +24,7 @@ public class GameController implements Controller {
         gameView.render(gameModel);
         if (gameModel.getCar().getSpeed() != 0.0d) {
             //System.out.println(gameModel.getCar().getX() + " " + gameModel.getCar().getY());
-            System.out.println(gameModel.getCar().getSpeed());
+            //System.out.println(gameModel.getCar().getSpeed());
         }
     }
 
@@ -43,21 +43,17 @@ public class GameController implements Controller {
         });
 
         gameView.getScene().setOnKeyPressed(e -> {
-            if (e.getCode() == KeyCode.A) {
-                System.out.println("left");
-                gameModel.getCar().rotate(-3);
+            if (e.getCode() == KeyCode.LEFT) {
+                gameModel.getCar().rotate(-10);
             }
-            if (e.getCode() == KeyCode.D) {
-                System.out.println("right");
-                gameModel.getCar().rotate(3);
+            if (e.getCode() == KeyCode.RIGHT) {
+                gameModel.getCar().rotate(10);
             }
-            if (e.getCode() == KeyCode.W) {
-                System.out.println("up");
+            if (e.getCode() == KeyCode.UP) {
                 gameModel.getCar().setSpeed(-1);
             }
-            if (e.getCode() == KeyCode.S) {
-                System.out.println("down");
-                gameModel.getCar().setSpeed(2);
+            if (e.getCode() == KeyCode.DOWN) {
+                gameModel.getCar().setSpeed(1);
             }
             if (e.getCode() == KeyCode.ESCAPE){
                 System.out.println("hadebye");

@@ -19,9 +19,9 @@ public class Car {
     public Car() {
         mass = 1000;
         speed = 0.0f;
-        direction = 0;
+        direction = 90;
         position = new Vector(500.0d, 300.0d);
-        size = new Vector(5.0d, 5.0d);
+        size = new Vector(2.027 * 10.0d, 4.255 * 10.0d);
         look = new Image("resources/car/car_black_1.png");
 
     }
@@ -30,7 +30,8 @@ public class Car {
         if (Math.abs(speed) > 0.005f) {
             speed *= 0.99f;
         }
-        this.position.x += this.speed;
+        this.position.x += Math.cos(Math.toRadians(this.direction) + Math.PI /2) * this.speed;
+        this.position.y += Math.sin(Math.toRadians(this.direction) + Math.PI /2) * this.speed;
     }
 
     public void setSpeed(float x) {
@@ -49,19 +50,19 @@ public class Car {
         return position;
     }
 
-    public double getX(){
+    public double getX() {
         return this.position.getX();
     }
 
-    public double getY(){
+    public double getY() {
         return this.position.getY();
     }
 
-    public double getWidth(){
+    public double getWidth() {
         return this.size.getX();
     }
 
-    public double getHeight(){
+    public double getHeight() {
         return this.size.getY();
     }
 
