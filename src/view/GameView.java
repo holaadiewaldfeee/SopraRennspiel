@@ -14,7 +14,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import model.Car;
+import model.Obstacle;
 import model.GameModel;
+
+import java.util.ArrayList;
 
 public class GameView implements View {
 
@@ -23,6 +26,7 @@ public class GameView implements View {
     private Pane gamePane;
 
     private Rectangle car;
+    //private ArrayList<Rectangle> obs;
     private Rectangle startLine;
     private Rectangle checkpointLine;
     private Ellipse ellipse;
@@ -74,11 +78,15 @@ public class GameView implements View {
         checkpointLine.setLayoutY(650);
         checkpointLine.setFill(Color.ORANGE);
 
+
         gamePane.getChildren().add(border);
         gamePane.getChildren().add(ellipse);
         gamePane.getChildren().add(text);
         gamePane.getChildren().add(startLine);
         gamePane.getChildren().add(checkpointLine);
+        //for (Rectangle o: obs) {
+          //  gamePane.getChildren().add(o);
+        //}
         car = new Rectangle(1,1);
         gamePane.getChildren().add(car);
 
@@ -90,6 +98,7 @@ public class GameView implements View {
     }
 
     //update car
+    //todo: update obstacles
     public void render(GameModel m) {
         Car c = m.getCar();
         c.update();
@@ -98,5 +107,8 @@ public class GameView implements View {
         car.setScaleY(c.getHeight());
         car.setRotate(c.getDirection());
         car.setFill(new ImagePattern(c.getLook()));
+
+
+
     }
 }
