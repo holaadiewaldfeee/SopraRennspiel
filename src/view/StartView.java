@@ -11,11 +11,11 @@ import model.GameModel;
 public class StartView implements View {
 
 
-    //The scene where all is stacked up
     private Scene scene;
-    //Stackpane, where all dialogs are stacked
     private StackPane rootPane;
     private Pane gamePane;
+    public Button startButton;
+
 
     public StartView() {
         rootPane = new StackPane();
@@ -24,13 +24,11 @@ public class StartView implements View {
     }
 
 
-    public Button backToStartView;
-    public Button pause;
 
-
-    //Sets up main start window
+    //Sets up start window
     public void setupGameWindow() {
 
+        //todo: startbild mit erklärung zum spiel ziel etc
         gamePane = new Pane();
 
         Text text = new Text("Rennspiel_StartView");
@@ -38,15 +36,13 @@ public class StartView implements View {
         text.setLayoutY(20);
         text.setFont(new Font("Arial Black", 20));
 
-        //obligatory
-        backToStartView = new Button("zurück ins Start Menu");
-        backToStartView.setLayoutX(1000);
-        backToStartView.setLayoutY(700);
+        startButton = new Button("Play Game!");
+        startButton.setLayoutX(550);
+        startButton.setLayoutY(600);
+        startButton.setStyle("-fx-font-size: 40pt;");
 
-
-        gamePane.getChildren().add(backToStartView);
         gamePane.getChildren().add(text);
-        // gamePane.getChildren().add(pause);
+        gamePane.getChildren().add(startButton);
         rootPane.getChildren().add(gamePane);
 
 

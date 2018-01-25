@@ -1,18 +1,13 @@
 package controller;
 
-import javafx.scene.Scene;
+import application.Main;
 import javafx.stage.Stage;
-import view.View;
-
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 
 public class MainController {
 
     private static Stage stage;
-    // Generically typed view. This is to always offer the same methods in the view
-    private static ArrayList<Controller> controllers;
+    public static ArrayList<Controller> controllers;
     private static int indx = 0;
 
     /**
@@ -33,16 +28,13 @@ public class MainController {
      * @param timeDifferenceInSeconds the time passed since last frame
      */
     public void updateContinuously(double timeDifferenceInSeconds) {
-        // Sage dem model, dass jetzt zeit vergangen ist und ein neuer update zyklus abgeschlossen ist
-        // wenn wir die update methode des models aufrufen sollen alle seine informationen aktualisiert werden :)
-
         controllers.get(indx).update();
         controllers.get(indx).render();
     }
 
-    // Hier den controllers wechseln
+    // change views through controllers
     static void changeController(int i){
-        indx = i; // irgendwas anderes...
+        indx = i;
         stage.setScene(controllers.get(indx).getView().getScene());
     }
 }

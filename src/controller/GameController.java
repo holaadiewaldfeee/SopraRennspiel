@@ -1,16 +1,16 @@
 package controller;
 
+import application.Main;
 import javafx.scene.input.KeyCode;
-import javafx.stage.Stage;
 import model.GameModel;
 import view.GameView;
 import view.View;
 
+//todo: auto dreht und fährt nicht gleichzeitig
 
 public class GameController implements Controller {
 
     private GameView gameView;
-    // Main game gameModel
     private static GameModel gameModel;
 
     public GameController(GameModel model) {
@@ -34,13 +34,6 @@ public class GameController implements Controller {
 
     @Override
     public void setupInteraction() {
-        gameView.backToStartView.setOnAction(e -> {
-            System.out.println("game started");
-        });
-
-        gameView.pause.setOnAction(e -> {
-            System.out.println("Pause maked!");
-        });
 
         gameView.getScene().setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.LEFT) {
@@ -54,6 +47,15 @@ public class GameController implements Controller {
             }
             if (e.getCode() == KeyCode.DOWN) {
                 gameModel.getCar().setSpeed(1);
+            }
+            if (e.getCode() == KeyCode.P){
+                System.out.println("pause Game");
+                MainController.changeController(2);
+            }
+            if (e.getCode() == KeyCode.R){
+                System.out.println("reset Game");
+                //todo: reseten geht noch nicht -> stage neu laden?!
+                //Main.newGame();
             }
             if (e.getCode() == KeyCode.ESCAPE){
                 System.out.println("hadebye");

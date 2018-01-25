@@ -11,53 +11,50 @@ import model.GameModel;
 public class PauseView implements View {
 
 
-    //The scene where all is stacked up
     private Scene scene;
-    //Stackpane, where all dialogs are stacked
     private StackPane rootPane;
     private Pane gamePane;
 
-    public Button backToStartView;
-    public Button pause;
+    public Button backToGame;
+
+    public Text text;
+    public Text pausetext;
 
     public PauseView() {
         rootPane = new StackPane();
         scene = new Scene(rootPane, 1300, 800);
-        //setupGameWindow();
+        setupGameWindow();
     }
 
+    //Sets up pauseButton window
     @Override
     public void setupGameWindow() {
 
-    }
-
-    //Sets up main pause window
-   /* public void setupGameWindow() {
-
         gamePane = new Pane();
 
-        Text text = new Text("Rennspiel_PauseViewlalalalal");
+        Text text = new Text("Rennspiel_PauseView");
         text.setLayoutX(10);
         text.setLayoutY(20);
         text.setFont(new Font("Arial Black", 20));
 
-        //obligatory
-        backToStartView = new Button("zurück ins Start Menu");
-        backToStartView.setLayoutX(1000);
-        backToStartView.setLayoutY(700);
+        pausetext = new Text("Jetzt ist gerade Pause, drücke p um sie zu beenden");
+        pausetext.setLayoutX(100);
+        pausetext.setLayoutY(200);
+        pausetext.setFont(new Font("Arial Black", 20));
 
-        pause = new Button("hier pause maken");
-        pause.setLayoutY(50);
-        pause.setLayoutX(50);
-        pause.setStyle("-fx-font-size: 20pt;");
+        backToGame = new Button("Pause beenden");
+        backToGame.setLayoutX(800);
+        backToGame.setLayoutY(500);
+        backToGame.setStyle("-fx-font-size: 40pt;");
 
-        gamePane.getChildren().add(backToStartView);
         gamePane.getChildren().add(text);
-        gamePane.getChildren().add(pause);
+        gamePane.getChildren().add(pausetext);
+        gamePane.getChildren().add(backToGame);
         rootPane.getChildren().add(gamePane);
-    }*/
+    }
 
     public Scene getScene() {
+
         return scene;
     }
 

@@ -1,7 +1,6 @@
 package view;
 
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -18,17 +17,12 @@ import model.GameModel;
 
 public class GameView implements View {
 
-    //The scene where all is stacked up
     private Scene scene;
-    //Stackpane, where all dialogs are stacked
     private StackPane rootPane;
     private Pane gamePane;
 
     private Rectangle car;
-
-    //Buttons
-    public Button backToStartView;
-    public Button pause;
+    private Ellipse ellipse;
 
     public GameView() {
         rootPane = new StackPane();
@@ -40,9 +34,11 @@ public class GameView implements View {
      * Sets up the main game window with the course as panebackground,
      * the car in the initial Position
      */
-    //Sets up main game window
+    //Sets up game window
     public void setupGameWindow() {
 
+
+        //todo: Startlinie und checkpoint hinzufügen und obstacles
         gamePane = new Pane();
 
         Text text = new Text("Rennspiel_GameView");
@@ -50,27 +46,14 @@ public class GameView implements View {
         text.setLayoutY(20);
         text.setFont(new Font("Arial Black", 20));
 
-        //obligatory
-        backToStartView = new Button("zurück ins Start Menu");
-        backToStartView.setLayoutX(1000);
-        backToStartView.setLayoutY(700);
-
-        pause = new Button("hier pause maken");
-        pause.setLayoutY(50);
-        pause.setLayoutX(50);
-        pause.setStyle("-fx-font-size: 20pt;");
-
-        //test
-        Ellipse ellipse = new Ellipse();
+        ellipse = new Ellipse();
         ellipse.setCenterX(650);
         ellipse.setCenterY(400);
-        // Radius X
         ellipse.setRadiusX(500);
-        // Radius Y
         ellipse.setRadiusY(300);
-        // Fill color.
         ellipse.setFill(Color.TRANSPARENT);
         ellipse.setStroke(Color.GRAY);
+        //better strokeWidth then two ellipses;)
         ellipse.setStrokeWidth(100);
         BorderPane border = new BorderPane();
         ImageView imgView = new ImageView(new Image("resources/racetrack/land_grass04.png"));
@@ -78,16 +61,13 @@ public class GameView implements View {
         imgView.setScaleY(800);
         border.setCenter(imgView);
 
-
         gamePane.getChildren().add(border);
-
         gamePane.getChildren().add(ellipse);
-        gamePane.getChildren().add(backToStartView);
         gamePane.getChildren().add(text);
-        gamePane.getChildren().add(pause);
 
         car = new Rectangle(1,1);
         gamePane.getChildren().add(car);
+
         rootPane.getChildren().add(gamePane);
     }
 
@@ -95,6 +75,7 @@ public class GameView implements View {
         return scene;
     }
 
+    //update car
     public void render(GameModel m) {
         Car c = m.getCar();
         c.update();

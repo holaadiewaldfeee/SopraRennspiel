@@ -12,12 +12,13 @@ public class Main extends Application {
 
     private long oldTime;
 
-
+    static GameModel gameModel = new GameModel();
+    static ArrayList<Controller> controllerList;
     @Override
     public void start(Stage stage) throws Exception {
 
         //Create the instances for the game
-        GameModel gameModel = new GameModel();
+
 
         // Sets general parameters for the stage
         stage.setTitle("Rennspiel_Sabrina_Boehm");
@@ -27,10 +28,10 @@ public class Main extends Application {
         StartController startController = new StartController(gameModel);
         GameController gameController = new GameController(gameModel);
         PauseController pauseController = new PauseController(gameModel);
-        ArrayList<Controller> controllerList = new ArrayList<>();
-        controllerList.add(startController); // 0
-        controllerList.add(gameController); // 1
-        controllerList.add(pauseController); // 2
+        controllerList = new ArrayList<>();
+        controllerList.add(startController); // index 0
+        controllerList.add(gameController); // index 1
+        controllerList.add(pauseController); // index 2
 
         MainController controller = new MainController(stage, controllerList);
 
@@ -60,9 +61,15 @@ public class Main extends Application {
         stage.show();
     }
 
+    //todo: hier wollte ich das reset dings machen
+    /*public static void newGame(){
+        controllerList.remove(1);
+        controllerList.add(new GameController(gameModel));
+    }
+*/
 
     /**
-     * Launches the Application (calls start overriden start method)
+     * Launches the Application (calls startButton overriden startButton method)
      *
      * @param args
      */
