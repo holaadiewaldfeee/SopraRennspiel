@@ -7,9 +7,9 @@ public interface Controller {
 
     void update();
 
-    void render();
-
     void setupInteraction();
 
     View getView();
+
+    void updateKeys();
 }

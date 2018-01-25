@@ -28,8 +28,8 @@ public class MainController {
      * @param timeDifferenceInSeconds the time passed since last frame
      */
     public void updateContinuously(double timeDifferenceInSeconds) {
+        controllers.get(indx).updateKeys();
         controllers.get(indx).update();
-        controllers.get(indx).render();
     }
 
     // change views through controllers
@@ -37,4 +37,5 @@ public class MainController {
         indx = i;
         stage.setScene(controllers.get(indx).getView().getScene());
     }
+
 }

@@ -36,10 +36,12 @@ public class GameModel {
     }
 
     public void update(){
+
         this.car.update();
     }
 
     public Car getCar() {
+
         return car;
     }
 }

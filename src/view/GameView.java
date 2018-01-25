@@ -8,6 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -22,6 +23,8 @@ public class GameView implements View {
     private Pane gamePane;
 
     private Rectangle car;
+    private Rectangle startLine;
+    private Rectangle checkpointLine;
     private Ellipse ellipse;
 
     public GameView() {
@@ -61,10 +64,21 @@ public class GameView implements View {
         imgView.setScaleY(800);
         border.setCenter(imgView);
 
+        startLine = new Rectangle(10,100);
+        startLine.setLayoutX(650);
+        startLine.setLayoutY(50);
+        startLine.setFill(Color.WHITESMOKE);
+
+        checkpointLine = new Rectangle(10,100);
+        checkpointLine.setLayoutX(650);
+        checkpointLine.setLayoutY(650);
+        checkpointLine.setFill(Color.ORANGE);
+
         gamePane.getChildren().add(border);
         gamePane.getChildren().add(ellipse);
         gamePane.getChildren().add(text);
-
+        gamePane.getChildren().add(startLine);
+        gamePane.getChildren().add(checkpointLine);
         car = new Rectangle(1,1);
         gamePane.getChildren().add(car);
 

@@ -20,7 +20,7 @@ public class Car {
         mass = 1000;
         speed = 0.0f;
         direction = 90;
-        position = new Vector(500.0d, 300.0d);
+        position = new Vector(600.0d, 100.0d);
         size = new Vector(2.027 * 10.0d, 4.255 * 10.0d);
         look = new Image("resources/car/car_black_1.png");
 

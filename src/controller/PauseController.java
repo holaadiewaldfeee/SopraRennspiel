@@ -22,10 +22,6 @@ public class PauseController implements Controller {
     public void update(){
         pauseView.render(gameModel);
     }
-
-    @Override
-    public void render(){}
-
     //handle input
     @Override
     public void setupInteraction() {
@@ -51,5 +47,9 @@ public class PauseController implements Controller {
     @Override
     public View getView() {
         return this.pauseView;
+    }
+    @Override
+    public void updateKeys() {
+
     }
 }

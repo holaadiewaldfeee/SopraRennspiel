@@ -23,10 +23,6 @@ public class StartController implements Controller {
         startView.render(gameModel);
     }
 
-    @Override
-    public void render() {
-    }
-
     //handle input
     @Override
     public void setupInteraction() {
@@ -53,4 +49,10 @@ public class StartController implements Controller {
     public View getView() {
         return this.startView;
     }
+
+    @Override
+    public void updateKeys() {
+
+    }
+
 }
