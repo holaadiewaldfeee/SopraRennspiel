@@ -17,7 +17,6 @@ import model.Car;
 import model.Obstacle;
 import model.GameModel;
 
-import java.util.ArrayList;
 
 public class GameView implements View {
 
