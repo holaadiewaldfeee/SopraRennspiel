@@ -20,7 +20,8 @@ public class Car {
         mass = 1000;
         speed = 0.0f;
         direction = 90;
-        position = new Vector(600.0d, 100.0d);
+        //1m behind the startLine
+        position = new Vector(618.73d, 100.0d);
         size = new Vector(2.027 * 10.0d, 4.255 * 10.0d);
         look = new Image("resources/car/car_black_1.png");
 
@@ -39,7 +40,9 @@ public class Car {
     }
 
     public void rotate(float x) {
-        this.direction += x;
+        if (Math.abs(getSpeed()) > 0.005) {
+            this.direction += x;
+        }
     }
 
     public double getSpeed() {

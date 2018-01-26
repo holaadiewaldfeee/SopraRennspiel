@@ -21,7 +21,7 @@ public class GameController implements Controller {
 
     private GameView gameView;
     private static GameModel gameModel;
-
+    private final static int ROTATEINTENSITY = 1;
 
 
     ArrayList<String> input = new ArrayList<String>();
@@ -51,11 +51,11 @@ public class GameController implements Controller {
     @Override
     public void updateKeys(){
         if (input.contains("LEFT")){
-            gameModel.getCar().rotate(-1);
+            gameModel.getCar().rotate(-ROTATEINTENSITY);
             System.out.println("left");
         }
         if (input.contains("RIGHT")){
-            gameModel.getCar().rotate(1);
+            gameModel.getCar().rotate(ROTATEINTENSITY);
 
         }
         if (input.contains("UP")){
@@ -73,39 +73,31 @@ public class GameController implements Controller {
 
 
         gameView.getScene().setOnKeyPressed(
-                new EventHandler<KeyEvent>()
-                {
-                    public void handle(KeyEvent e)
-                    {
-                        if (e.getCode() == KeyCode.P){
-                            System.out.println("pause Game");
-                            MainController.changeController(2);
-                        }
-                        if (e.getCode() == KeyCode.R){
-                            System.out.println("reset Game");
-                            //todo: reseten geht noch nicht -> stage neu laden?!
-                            //Main.newGame();
-                        }
-                        if (e.getCode() == KeyCode.ESCAPE){
-                            System.out.println("hadebye");
-                            System.exit(0);
-                        }
-                        String code = e.getCode().toString();
-
-                        // only add once... prevent duplicates
-                        if ( !input.contains(code) )
-                            input.add( code );
+                e -> {
+                    if (e.getCode() == KeyCode.P){
+                        System.out.println("pause Game");
+                        MainController.changeController(2);
                     }
+                    if (e.getCode() == KeyCode.R){
+                        System.out.println("reset Game");
+                        //todo: reseten geht noch nicht -> stage neu laden?!
+                        //Main.newGame();
+                    }
+                    if (e.getCode() == KeyCode.ESCAPE){
+                        System.out.println("hadebye");
+                        System.exit(0);
+                    }
+                    String code = e.getCode().toString();
+
+                    //only add once
+                    if ( !input.contains(code) )
+                        input.add( code );
                 });
 
         gameView.getScene().setOnKeyReleased(
-                new EventHandler<KeyEvent>()
-                {
-                    public void handle(KeyEvent e)
-                    {
-                        String code = e.getCode().toString();
-                        input.remove( code );
-                    }
+                e -> {
+                    String code = e.getCode().toString();
+                    input.remove( code );
                 });
 
         //das alte

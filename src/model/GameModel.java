@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * The GameModel saves data about the game, including the racecar.
@@ -45,12 +44,7 @@ public class GameModel {
 
 
         do {
-
-            Random r1 = new Random();
-            double randomValueX = 1300.d * r1.nextDouble();
-            Random r2 = new Random();
-            double randomValueY = 800.0d * r2.nextDouble();
-            Obstacle o = new Obstacle(new Vector(randomValueX, randomValueY));
+            Obstacle o = new Obstacle();
             System.out.println(o);
             obstaclesList.add(o);
 
@@ -60,13 +54,18 @@ public class GameModel {
 
 
     public void update(){
+        for (Obstacle o : obstaclesList) {
+            o.update();
+        }
         this.car.update();
     }
+
 
     public Car getCar() {
 
         return car;
     }
+
     public ArrayList<Obstacle> getObstacles() {
 
         return obstaclesList;

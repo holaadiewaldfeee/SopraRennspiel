@@ -26,10 +26,12 @@ public class GameView implements View {
     private Pane gamePane;
 
     private Rectangle car;
-    //private ArrayList<Rectangle> obs;
+    private ArrayList<Rectangle> obs = new ArrayList<>(GameModel.MAXOBS);
     private Rectangle startLine;
     private Rectangle checkpointLine;
     private Ellipse ellipse;
+    private Ellipse ellipse2;
+    private Ellipse ellipse3;
 
     public GameView() {
         rootPane = new StackPane();
@@ -68,6 +70,24 @@ public class GameView implements View {
         imgView.setScaleY(800);
         border.setCenter(imgView);
 
+        //inner
+        ellipse2 = new Ellipse();
+        ellipse2.setCenterX(650);
+        ellipse2.setCenterY(400);
+        ellipse2.setRadiusX(450);
+        ellipse2.setRadiusY(250);
+        ellipse2.setFill(Color.TRANSPARENT);
+        ellipse2.setStroke(Color.WHITE);
+
+        //outer
+        ellipse3 = new Ellipse();
+        ellipse3.setCenterX(650);
+        ellipse3.setCenterY(400);
+        ellipse3.setRadiusX(550);
+        ellipse3.setRadiusY(350);
+        ellipse3.setFill(Color.TRANSPARENT);
+        ellipse3.setStroke(Color.WHITE);
+
         startLine = new Rectangle(10,100);
         startLine.setLayoutX(650);
         startLine.setLayoutY(50);
@@ -81,12 +101,21 @@ public class GameView implements View {
 
         gamePane.getChildren().add(border);
         gamePane.getChildren().add(ellipse);
+        gamePane.getChildren().add(ellipse2);
+        gamePane.getChildren().add(ellipse3);
         gamePane.getChildren().add(text);
         gamePane.getChildren().add(startLine);
         gamePane.getChildren().add(checkpointLine);
-        //for (Rectangle o: obs) {
-          //  gamePane.getChildren().add(o);
-        //}
+
+        //obs generate
+
+        for (Rectangle o: obs) {
+            o = new Rectangle(1,1);
+            gamePane.getChildren().add(o);
+        }
+
+
+
         car = new Rectangle(1,1);
         gamePane.getChildren().add(car);
 
@@ -108,7 +137,13 @@ public class GameView implements View {
         car.setRotate(c.getDirection());
         car.setFill(new ImagePattern(c.getLook()));
 
+        int i=0;
+        for (Rectangle ob :obs ) {
+            Obstacle o = m.getObstacles().get(i);
+            o.update();
+            i++;
 
+        }
 
     }
 }
