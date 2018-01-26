@@ -9,13 +9,12 @@ import java.util.ArrayList;
 public class GameModel {
 
     //max occurences obstacles
-    public final static int MAXOBS = 10;
 
     /**
      * The car that is driven on the racetrack
      */
     private Car car;
-    private ArrayList<Obstacle> obstaclesList = new ArrayList<>();
+    //private ArrayList<Obstacle> obstaclesList = new ArrayList<>();
 
     /**
      * Creates a gameModel, that handles most of the actions
@@ -24,7 +23,7 @@ public class GameModel {
 
         //initialize Car, default data in GameView
         car = initializeCar();
-        initializeObstacles();
+        //initializeObstacles();
         //System.out.println(obstaclesList);
     }
 
@@ -40,7 +39,7 @@ public class GameModel {
         return car;
     }
 
-    private void initializeObstacles(){
+    /*private void initializeObstacles(){
 
 
         do {
@@ -50,14 +49,14 @@ public class GameModel {
 
         }while(obstaclesList.size() <= MAXOBS);
 
-    }
+    }*/
 
 
     public void update(){
-        for (Obstacle o : obstaclesList) {
+        /*for (Obstacle o : obstaclesList) {
             o.update();
         }
-        this.car.update();
+        this.car.update();*/
     }
 
 
@@ -66,8 +65,8 @@ public class GameModel {
         return car;
     }
 
-    public ArrayList<Obstacle> getObstacles() {
+    /*public ArrayList<Obstacle> getObstacles() {
 
         return obstaclesList;
-    }
+    }*/
 }

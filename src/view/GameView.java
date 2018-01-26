@@ -26,7 +26,7 @@ public class GameView implements View {
     private Pane gamePane;
 
     private Rectangle car;
-    private ArrayList<Rectangle> obs = new ArrayList<>(GameModel.MAXOBS);
+    private ArrayList<Obstacle> obs = new ArrayList<>(Obstacle.MAXOBS);
     private Rectangle startLine;
     private Rectangle checkpointLine;
     private Ellipse ellipse;
@@ -109,9 +109,10 @@ public class GameView implements View {
 
         //obs generate
 
-        for (Rectangle o: obs) {
-            o = new Rectangle(1,1);
-            gamePane.getChildren().add(o);
+        for (Obstacle o: obs) {
+            Rectangle rec = new Rectangle(o.getX(),o.getY(), o.getWidth(), o.getHeight());
+            System.out.println(rec);
+            gamePane.getChildren().add(rec);
         }
 
 
@@ -137,13 +138,14 @@ public class GameView implements View {
         car.setRotate(c.getDirection());
         car.setFill(new ImagePattern(c.getLook()));
 
-        int i=0;
+        /*int i=0;
         for (Rectangle ob :obs ) {
+            System.out.println(ob);
             Obstacle o = m.getObstacles().get(i);
             o.update();
             i++;
 
-        }
+        }*/
 
     }
 }

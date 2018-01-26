@@ -9,6 +9,10 @@ import java.util.Random;
  */
 public class Obstacle {
 
+
+    public final static int MAXOBS = 10;
+
+
     private Vector position;
     private Vector size;
     private Image look;
