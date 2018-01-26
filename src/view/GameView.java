@@ -26,12 +26,13 @@ public class GameView implements View {
     private Pane gamePane;
 
     private Rectangle car;
-    private ArrayList<Obstacle> obs = new ArrayList<>(Obstacle.MAXOBS);
     private Rectangle startLine;
     private Rectangle checkpointLine;
     private Ellipse ellipse;
     private Ellipse ellipse2;
     private Ellipse ellipse3;
+
+    public boolean checkPoint = false;
 
     public GameView() {
         rootPane = new StackPane();
@@ -66,7 +67,7 @@ public class GameView implements View {
         ellipse.setStrokeWidth(100);
         BorderPane border = new BorderPane();
         ImageView imgView = new ImageView(new Image("resources/racetrack/land_grass04.png"));
-        imgView.setScaleX(1200);
+        imgView.setScaleX(1300);
         imgView.setScaleY(800);
         border.setCenter(imgView);
 
@@ -92,12 +93,16 @@ public class GameView implements View {
         startLine.setLayoutX(650);
         startLine.setLayoutY(50);
         startLine.setFill(Color.WHITESMOKE);
+        startLine.setFill(new ImagePattern(new Image("resources/lines/barrier_white.png")));
 
         checkpointLine = new Rectangle(10,100);
         checkpointLine.setLayoutX(650);
         checkpointLine.setLayoutY(650);
-        checkpointLine.setFill(Color.ORANGE);
-
+        if (checkPoint){
+            checkpointLine.setFill(Color.YELLOWGREEN);
+        }else {
+            checkpointLine.setFill(Color.INDIANRED);
+        }
 
         gamePane.getChildren().add(border);
         gamePane.getChildren().add(ellipse);
@@ -109,9 +114,10 @@ public class GameView implements View {
 
         //obs generate
 
-        for (Obstacle o: obs) {
+        for (Obstacle o: GameModel.getObstacles()) {
             Rectangle rec = new Rectangle(o.getX(),o.getY(), o.getWidth(), o.getHeight());
             System.out.println(rec);
+            rec.setFill(new ImagePattern(o.getLook()));
             gamePane.getChildren().add(rec);
         }
 
@@ -138,14 +144,12 @@ public class GameView implements View {
         car.setRotate(c.getDirection());
         car.setFill(new ImagePattern(c.getLook()));
 
-        /*int i=0;
-        for (Rectangle ob :obs ) {
-            System.out.println(ob);
+        int i=0;
+        for (Obstacle ob : GameModel.getObstacles()) {
             Obstacle o = m.getObstacles().get(i);
-            o.update();
             i++;
 
-        }*/
+        }
 
     }
 }
