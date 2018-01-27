@@ -28,7 +28,7 @@ public class GameView implements View {
     private Rectangle startLine;
     private Rectangle checkpointLine;
     private static Ellipse ellipse;
-    private Ellipse ellipse2;
+    private static Ellipse ellipse2;
     private Ellipse ellipse3;
 
     public boolean checkPoint = false;
@@ -65,13 +65,7 @@ public class GameView implements View {
         border.setCenter(imgView);
 
         //inner
-        ellipse2 = new Ellipse();
-        ellipse2.setCenterX(650);
-        ellipse2.setCenterY(400);
-        ellipse2.setRadiusX(450);
-        ellipse2.setRadiusY(250);
-        ellipse2.setFill(Color.TRANSPARENT);
-        ellipse2.setStroke(Color.WHITE);
+        ellipse2 = getEllipse2();
 
         //outer
         ellipse3 = new Ellipse();
@@ -109,7 +103,7 @@ public class GameView implements View {
 
         for (Obstacle o: GameModel.getObstacles()) {
             Rectangle rec = new Rectangle(o.getX(),o.getY(), o.getWidth(), o.getHeight());
-            System.out.println(rec);
+            //System.out.println(rec);
             rec.setFill(new ImagePattern(o.getLook()));
             gamePane.getChildren().add(rec);
         }
@@ -157,5 +151,15 @@ public class GameView implements View {
         //better strokeWidth then two ellipses;)
         ellipse.setStrokeWidth(100);
         return ellipse;
+    }
+    public static Ellipse getEllipse2() {
+        ellipse2 = new Ellipse();
+        ellipse2.setCenterX(650);
+        ellipse2.setCenterY(400);
+        ellipse2.setRadiusX(450);
+        ellipse2.setRadiusY(250);
+        ellipse2.setFill(Color.TRANSPARENT);
+        ellipse2.setStroke(Color.WHITE);
+        return ellipse2;
     }
 }

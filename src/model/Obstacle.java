@@ -13,7 +13,7 @@ import java.util.Random;
 public class Obstacle {
 
 
-    public final static int MAXOBS = 10;
+    public final static int MAXOBS = 20;
 
 
     private Vector position;

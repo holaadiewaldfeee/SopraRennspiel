@@ -19,6 +19,7 @@ public class GameModel {
     private Car car;
     private static ArrayList<Obstacle> obstaclesList = new ArrayList<>(Obstacle.MAXOBS);
     Ellipse ell = GameView.getEllipse();
+    Ellipse ell2 = GameView.getEllipse2();
 
     /**
      * Creates a gameModel, that handles most of the actions
@@ -49,7 +50,7 @@ public class GameModel {
         do {
             Obstacle o = new Obstacle();
             System.out.println(o);
-            if (ell.contains(o.getX(), o.getY())){
+            if (ell.contains(o.getX(), o.getY()) && !(ell2.contains(o.getX(), o.getY()))){
                 obstaclesList.add(o);
                 System.out.println("-------------------_");
             }
