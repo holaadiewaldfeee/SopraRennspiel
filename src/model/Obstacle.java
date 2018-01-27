@@ -2,6 +2,8 @@ package model;
 
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Ellipse;
+import view.GameView;
 
 import java.util.Random;
 
@@ -42,8 +44,17 @@ public class Obstacle {
         double x = ran.nextDouble()*1300;
         double y = ran.nextDouble()*800;
 
+        Vector pos = new Vector(x,y);
+        Ellipse ell = GameView.getEllipse();
+        if (ell.contains(pos.getX(), pos.getY())){
 
-        this.position = new Vector(x,y);
+            //
+            //
+            //
+            // System.out.println("-------------------_");
+        }
+
+        this.position = pos;
         size = new Vector(30,30);
         look = new Image("resources/obstacle/cone_straight.png");
     }

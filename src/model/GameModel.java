@@ -1,5 +1,8 @@
 package model;
 
+import javafx.scene.shape.Ellipse;
+import view.GameView;
+
 import java.util.ArrayList;
 
 /**
@@ -15,6 +18,7 @@ public class GameModel {
      */
     private Car car;
     private static ArrayList<Obstacle> obstaclesList = new ArrayList<>(Obstacle.MAXOBS);
+    Ellipse ell = GameView.getEllipse();
 
     /**
      * Creates a gameModel, that handles most of the actions
@@ -45,7 +49,11 @@ public class GameModel {
         do {
             Obstacle o = new Obstacle();
             System.out.println(o);
-            obstaclesList.add(o);
+            if (ell.contains(o.getX(), o.getY())){
+                obstaclesList.add(o);
+                System.out.println("-------------------_");
+            }
+
 
         }while(obstaclesList.size() < Obstacle.MAXOBS);
 

@@ -27,7 +27,7 @@ public class GameView implements View {
     private Rectangle car;
     private Rectangle startLine;
     private Rectangle checkpointLine;
-    private Ellipse ellipse;
+    private static Ellipse ellipse;
     private Ellipse ellipse2;
     private Ellipse ellipse3;
 
@@ -55,15 +55,9 @@ public class GameView implements View {
         text.setLayoutY(20);
         text.setFont(new Font("Arial Black", 20));
 
-        ellipse = new Ellipse();
-        ellipse.setCenterX(650);
-        ellipse.setCenterY(400);
-        ellipse.setRadiusX(500);
-        ellipse.setRadiusY(300);
-        ellipse.setFill(Color.TRANSPARENT);
-        ellipse.setStroke(Color.GRAY);
-        //better strokeWidth then two ellipses;)
-        ellipse.setStrokeWidth(100);
+
+        ellipse = getEllipse();
+
         BorderPane border = new BorderPane();
         ImageView imgView = new ImageView(new Image("resources/racetrack/land_grass04.png"));
         imgView.setScaleX(1300);
@@ -150,5 +144,18 @@ public class GameView implements View {
 
         }
 
+    }
+
+    public static Ellipse getEllipse() {
+        ellipse = new Ellipse();
+        ellipse.setCenterX(650);
+        ellipse.setCenterY(400);
+        ellipse.setRadiusX(500);
+        ellipse.setRadiusY(300);
+        ellipse.setFill(Color.TRANSPARENT);
+        ellipse.setStroke(Color.GRAY);
+        //better strokeWidth then two ellipses;)
+        ellipse.setStrokeWidth(100);
+        return ellipse;
     }
 }

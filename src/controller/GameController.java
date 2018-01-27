@@ -55,6 +55,7 @@ public class GameController implements Controller {
             System.out.println("left");
         }
         if (input.contains("RIGHT")){
+            System.out.println("right");
             gameModel.getCar().rotate(ROTATEINTENSITY);
 
         }
@@ -63,6 +64,7 @@ public class GameController implements Controller {
             System.out.println("up");
         }
         if (input.contains("DOWN")){
+            System.out.println("down");
             gameModel.getCar().setSpeed(1);
         }
     }
