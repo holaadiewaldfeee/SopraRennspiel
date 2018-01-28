@@ -41,7 +41,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
 
         //Create the instances for the game
-///home/sabrina/Schreibtisch/Rennspiel_Sabrina_Boehm/src/resources/sound
+        ///home/sabrina/Schreibtisch/Rennspiel_Sabrina_Boehm/src/resources/sound
 
         // Sets general parameters for the stage
         stage.setTitle("Rennspiel_Sabrina_Boehm");
@@ -57,8 +57,6 @@ public class Main extends Application {
         controllerList.add(pauseController); // index 2
 
         MainController controller = new MainController(stage, controllerList);
-
-        Sound s = new Sound();
 
         //Start the gameloop. It is executed every frame, the long now is the current timestamp
 

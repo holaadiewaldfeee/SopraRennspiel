@@ -2,21 +2,26 @@ package application;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 import java.io.File;
 
 
 public class Sound {
 
-    MediaPlayer player;
+    private MediaPlayer player;
 
-    public Sound() {
-        Media sound = new Media(new File("src/resources/sound/Eminem.wav").toURI().toString());
+    public Sound(String file) {
+        Media sound = new Media(new File(file).toURI().toString());
         player = new MediaPlayer(sound);
-        playSound();
+        player.setOnEndOfMedia(() -> player.seek(Duration.ZERO));
     }
 
     public void playSound() {
         player.play();
+    }
+
+    public void pauseSound() {
+        player.pause();
     }
 }

@@ -1,6 +1,7 @@
 package model;
 
 
+import application.Sound;
 import javafx.scene.image.Image;
 
 /**
@@ -18,10 +19,12 @@ public class Car {
     private float v = 1.0f;
     public static boolean damage = false;
 
-    private final float ROLLINGRESISTANCESTREET = (0.015f*981.0f)/1200.0f; //Rollwiederstand straße
-    private final float ROLLINGRESISTANCEGRAS = (0.05f*981.0f)/1200.0f; // Rollwiderstand gras
+    private final float ROLLINGRESISTANCESTREET = (0.015f * 981.0f) / 1200.0f; //Rollwiederstand straße
+    private final float ROLLINGRESISTANCEGRAS = (0.05f * 981.0f) / 1200.0f; // Rollwiderstand gras
     private final float MAXSPEEDFORDAMAGE = 100000.0f;
-   // private final float FLOWRESISTANCE = 0.28f * 2.19f * (0.5f*1.2041f) * (Math.pow( (float) v , (float) 2.0f));
+    // private final float FLOWRESISTANCE = 0.28f * 2.19f * (0.5f*1.2041f) * (Math.pow( (float) v , (float) 2.0f));
+
+    private Sound sound;
 
     public Car() {
         mass = 1200;
@@ -29,22 +32,26 @@ public class Car {
         direction = 90;
         position = new Vector(615.0d, 100.0d);
         size = new Vector(2.027 * 10.0d, 4.255 * 10.0d);
-        if (!damage){
+        if (!damage) {
             look = new Image("resources/car/car_black_1.png");
-        }else{
+        } else {
             //todo: ein damage car basteln png
             look = new Image("resources/car/car_black_1.png");
         }
 
-
+        sound = new Sound("src/resources/sound/345925__1histori__car-engine.wav");
     }
 
     public void update() {
         if (Math.abs(speed) > 0.005f) {
             speed *= 0.99f;
+            sound.playSound();
+        } else {
+            speed = 0;
+            sound.pauseSound();
         }
-        this.position.x += Math.cos(Math.toRadians(this.direction) + Math.PI /2) * this.speed;
-        this.position.y += Math.sin(Math.toRadians(this.direction) + Math.PI /2) * this.speed;
+        this.position.x += Math.cos(Math.toRadians(this.direction) + Math.PI / 2) * this.speed;
+        this.position.y += Math.sin(Math.toRadians(this.direction) + Math.PI / 2) * this.speed;
     }
 
     public void setSpeed(float x) {
