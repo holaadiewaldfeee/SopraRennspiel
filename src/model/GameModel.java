@@ -49,10 +49,10 @@ public class GameModel {
         do {
             Obstacle o = new Obstacle();
             System.out.println(o);
-            //todo: abstand zu startlinie und zu anderen obstacles
+            //todo: abstand zu anderen obstacles
             if (ell.contains(o.getX(), o.getY()) && !(ell2.contains(o.getX(), o.getY()))){
                 obstaclesList.add(o);
-                System.out.println("-------------------_");
+                System.out.println("-------------------");
             }
 
 

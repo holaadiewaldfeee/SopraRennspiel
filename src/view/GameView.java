@@ -47,13 +47,18 @@ public class GameView implements View {
     public void setupGameWindow() {
 
 
-        //todo: Startlinie und checkpoint hinzufügen und obstacles
         gamePane = new Pane();
 
         Text text = new Text("Rennspiel_GameView");
         text.setLayoutX(10);
         text.setLayoutY(20);
         text.setFont(new Font("Arial Black", 20));
+
+
+        Text time = new Text("00:00");
+        time.setLayoutX(100);
+        time.setLayoutY(100);
+        time.setFont(new Font("Arial Black", 30));
 
 
         ellipse = getEllipse();
@@ -96,6 +101,7 @@ public class GameView implements View {
         gamePane.getChildren().add(ellipse2);
         gamePane.getChildren().add(ellipse3);
         gamePane.getChildren().add(text);
+        gamePane.getChildren().add(time);
         gamePane.getChildren().add(startLine);
         gamePane.getChildren().add(checkpointLine);
 

@@ -70,9 +70,11 @@ public class Main extends Application {
     //todo: hier wollte ich das reset dings machen
     /*public static void newGame(){
         controllerList.remove(1);
+        controllerList.remove(2);
         controllerList.add(new GameController(gameModel));
-    }
-*/
+        controllerList.add(new PauseController(gameModel));
+    }*/
+
 
     /**
      * Launches the Application (calls startButton overriden startButton method)

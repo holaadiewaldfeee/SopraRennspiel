@@ -1,5 +1,6 @@
 package controller;
 
+import application.Main;
 import javafx.scene.input.KeyCode;
 import model.GameModel;
 import view.GameView;
@@ -56,7 +57,8 @@ public class GameController implements Controller {
         }
         if (input.contains("DOWN")){
             System.out.println("down");
-            gameModel.getCar().setSpeed(1);
+            gameModel.getCar().setSpeed(1)
+            ;
         }
     }
 
