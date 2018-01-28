@@ -3,8 +3,13 @@ package application;
 import controller.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import model.GameModel;
+
+import java.io.File;
+import java.net.URI;
 import java.util.ArrayList;
 
 
@@ -53,13 +58,7 @@ public class Main extends Application {
 
         MainController controller = new MainController(stage, controllerList);
 
-        /*Sequencer sequencer = MidiSystem.getSequencer();
-        sequencer.open();
-        InputStream midiFile = ClassLoader.getSystemResourceAsStream("src/resources/sound/music" );
-        sequencer.setSequence( MidiSystem.getSequence(midiFile) );
-        sequencer.start();
-        sequencer.stop();*/
-
+        Sound s = new Sound();
 
         //Start the gameloop. It is executed every frame, the long now is the current timestamp
 
@@ -93,8 +92,6 @@ public class Main extends Application {
      * @param args
      */
     public static void main(String[] args) {
-
-        //Sound s = new Sound();
         launch(args);
     }
 }
