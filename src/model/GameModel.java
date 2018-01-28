@@ -22,7 +22,9 @@ public class GameModel {
     static Ellipse ell2 = GameView.getEllipse2();
     static Rectangle sLB = GameView.getStartLineBounds();
     static Rectangle cLB = GameView.getCheckLineBounds();
-    public static long roundTime = 0;
+
+    public static double roundTime = 0;
+    private static boolean roundStarted = false;
 
     /**
      * Creates a gameModel, that handles most of the actions
@@ -77,7 +79,8 @@ public class GameModel {
 
 
     public static void update(double time) {
-        roundTime += time;
+        roundTime += roundStarted ? time : 0;
+        //System.out.println(roundTime);
     }
 
 
@@ -89,5 +92,19 @@ public class GameModel {
     public static ArrayList<Obstacle> getObstacles() {
 
         return obstaclesList;
+    }
+
+
+    public static void resetTime(){
+        roundStarted = false;
+        roundTime = 0;
+    }
+
+    public static void startRound() {
+        roundStarted = true;
+    }
+
+    public static void stopRound() {
+        roundStarted = false;
     }
 }

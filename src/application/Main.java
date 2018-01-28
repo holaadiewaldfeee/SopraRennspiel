@@ -17,7 +17,6 @@ import java.util.ArrayList;
 /*todo:
 2) Timer: hab in der gameview n timer text gemacht der muss laufen wenn das auto losfährt
    Reset: timer zurück e
-4) obstacles sollen noch nen mindestabstand zur start ziel linie und checkpoint linie haben und zu sich selbst
 5) Kollision: mit den obstacles und mit den linien muss noch rein
 6) Totalschaden: bei zu hoher geschwindigkeit muss das auto boom kaputt gehen und game over dialog
 7) game over dialog und game won dialog

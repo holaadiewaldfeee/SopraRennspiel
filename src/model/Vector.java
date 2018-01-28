@@ -1,6 +1,6 @@
 package model;
 
-class Vector {
+public class Vector {
     double x;
     double y;
 

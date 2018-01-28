@@ -99,4 +99,8 @@ public class Car {
     public Sound getSound() {
         return sound;
     }
+
+    public Vector getMidPoint() {
+        return new Vector(position.x + size.x / 2, position.y + size.y / 2);
+    }
 }

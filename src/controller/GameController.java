@@ -3,7 +3,10 @@ package controller;
 import application.Main;
 import application.Sound;
 import javafx.scene.input.KeyCode;
+import javafx.scene.shape.Rectangle;
+import model.Car;
 import model.GameModel;
+import model.Vector;
 import view.GameView;
 import view.View;
 
@@ -33,11 +36,16 @@ public class GameController implements Controller {
 
     @Override
     public void update() {
-        gameView.render(gameModel);
-        if (gameModel.getCar().getSpeed() != 0.0d) {
-            //System.out.println(gameModel.getCar().getX() + " " + gameModel.getCar().getY());
-            //System.out.println(gameModel.getCar().getSpeed());
+        Car brumm = GameModel.getCar();
+        Rectangle sL = GameView.getStartLine();
+        double tX = sL.getLayoutX()+ sL.getWidth()/2;
+        double tY = sL.getLayoutY() + sL.getHeight();
+        if(Math.abs(brumm.getMidPoint().getX() - tX) < 5 &&
+                brumm.getMidPoint().getY() > sL.getY() &&
+                brumm.getMidPoint().getY() < tY){
+            GameModel.startRound();
         }
+        gameView.render(gameModel);
     }
 
 
@@ -106,6 +114,7 @@ public class GameController implements Controller {
         controllerList.add(new PauseController(gameModel));*/
         GameModel.initializeCar();
         GameModel.initializeObstacles();
+        GameModel.resetTime();
     }
 
     public View getView() {

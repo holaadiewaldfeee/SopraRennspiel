@@ -25,7 +25,7 @@ public class GameView implements View {
     private Pane gamePane;
 
     private Rectangle car;
-    private Rectangle startLine;
+    private static Rectangle startLine;
     private static Rectangle startLineBounds;
     private static Rectangle checkLineBounds;
     private Rectangle checkpointLine;
@@ -34,6 +34,8 @@ public class GameView implements View {
     private Ellipse ellipse3;
 
     public boolean checkPoint = false;
+
+    private Text time;
 
     public GameView() {
         rootPane = new StackPane();
@@ -57,7 +59,7 @@ public class GameView implements View {
         text.setFont(new Font("Arial Black", 20));
 
 
-        Text time = new Text("00:00");
+        time = new Text("00:00");
         time.setLayoutX(100);
         time.setLayoutY(100);
         time.setFont(new Font("Arial Black", 30));
@@ -85,11 +87,7 @@ public class GameView implements View {
         ellipse3.setFill(Color.TRANSPARENT);
         ellipse3.setStroke(Color.WHITE);
 
-        startLine = new Rectangle(10, 100);
-        startLine.setLayoutX(650);
-        startLine.setLayoutY(50);
-        startLine.setFill(Color.WHITESMOKE);
-        startLine.setFill(new ImagePattern(new Image("resources/lines/barrier_white.png")));
+        startLine = getStartLine();
 
         startLineBounds = getStartLineBounds();
         checkLineBounds = getCheckLineBounds();
@@ -152,6 +150,9 @@ public class GameView implements View {
 
         }
 
+        int seconds = (int) GameModel.roundTime % 60;
+        int minute = (int) (GameModel.roundTime / 60);
+        time.setText(String.format("%d:%d", minute, seconds));
     }
 
     public static Ellipse getEllipse() {
@@ -188,5 +189,14 @@ public class GameView implements View {
         checkLineBounds = new Rectangle(525, 650, 200, 100);
         checkLineBounds.setFill(Color.TRANSPARENT);
         return checkLineBounds;
+    }
+
+    public static Rectangle getStartLine() {
+        startLine = new Rectangle(10, 100);
+        startLine.setLayoutX(650);
+        startLine.setLayoutY(50);
+        startLine.setFill(Color.WHITESMOKE);
+        startLine.setFill(new ImagePattern(new Image("resources/lines/barrier_white.png")));
+        return startLine;
     }
 }
