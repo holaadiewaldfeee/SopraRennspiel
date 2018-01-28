@@ -26,6 +26,8 @@ public class GameView implements View {
 
     private Rectangle car;
     private Rectangle startLine;
+    private static Rectangle startLineBounds;
+    private static Rectangle checkLineBounds;
     private Rectangle checkpointLine;
     private static Ellipse ellipse;
     private static Ellipse ellipse2;
@@ -83,18 +85,21 @@ public class GameView implements View {
         ellipse3.setFill(Color.TRANSPARENT);
         ellipse3.setStroke(Color.WHITE);
 
-        startLine = new Rectangle(10,100);
+        startLine = new Rectangle(10, 100);
         startLine.setLayoutX(650);
         startLine.setLayoutY(50);
         startLine.setFill(Color.WHITESMOKE);
         startLine.setFill(new ImagePattern(new Image("resources/lines/barrier_white.png")));
 
-        checkpointLine = new Rectangle(10,100);
+        startLineBounds = getStartLineBounds();
+        checkLineBounds = getCheckLineBounds();
+
+        checkpointLine = new Rectangle(10, 100);
         checkpointLine.setLayoutX(650);
         checkpointLine.setLayoutY(650);
-        if (checkPoint){
+        if (checkPoint) {
             checkpointLine.setFill(Color.YELLOWGREEN);
-        }else {
+        } else {
             checkpointLine.setFill(Color.INDIANRED);
         }
 
@@ -105,20 +110,21 @@ public class GameView implements View {
         gamePane.getChildren().add(text);
         gamePane.getChildren().add(time);
         gamePane.getChildren().add(startLine);
+        gamePane.getChildren().add(startLineBounds);
+        gamePane.getChildren().add(checkLineBounds);
         gamePane.getChildren().add(checkpointLine);
 
         //obs generate
 
-        for (Obstacle o: GameModel.getObstacles()) {
-            Rectangle rec = new Rectangle(o.getX(),o.getY(), o.getWidth(), o.getHeight());
+        for (Obstacle o : GameModel.getObstacles()) {
+            Rectangle rec = new Rectangle(o.getX(), o.getY(), o.getWidth(), o.getHeight());
             //System.out.println(rec);
             rec.setFill(new ImagePattern(o.getLook()));
             gamePane.getChildren().add(rec);
         }
 
 
-
-        car = new Rectangle(1,1);
+        car = new Rectangle(1, 1);
         gamePane.getChildren().add(car);
 
         rootPane.getChildren().add(gamePane);
@@ -139,7 +145,7 @@ public class GameView implements View {
         car.setRotate(c.getDirection());
         car.setFill(new ImagePattern(c.getLook()));
 
-        int i=0;
+        int i = 0;
         for (Obstacle ob : GameModel.getObstacles()) {
             Obstacle o = m.getObstacles().get(i);
             i++;
@@ -160,6 +166,7 @@ public class GameView implements View {
         ellipse.setStrokeWidth(100);
         return ellipse;
     }
+
     public static Ellipse getEllipse2() {
         ellipse2 = new Ellipse();
         ellipse2.setCenterX(650);
@@ -169,5 +176,17 @@ public class GameView implements View {
         ellipse2.setFill(Color.TRANSPARENT);
         ellipse2.setStroke(Color.WHITE);
         return ellipse2;
+    }
+
+    public static Rectangle getStartLineBounds() {
+        startLineBounds = new Rectangle(525, 50, 150, 100);
+        startLineBounds.setFill(Color.TRANSPARENT);
+        return startLineBounds;
+    }
+
+    public static Rectangle getCheckLineBounds() {
+        checkLineBounds = new Rectangle(525, 650, 200, 100);
+        checkLineBounds.setFill(Color.TRANSPARENT);
+        return checkLineBounds;
     }
 }
