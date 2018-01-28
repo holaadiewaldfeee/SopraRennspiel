@@ -13,15 +13,16 @@ public class Car {
     private float direction;
     private Vector position;
     private Vector size;
-
     private Image look;
+
+    private final float ROLLINGRESISTANCESTREET = 1;
+    private final float ROLLINGRESISTANCEGRAS = 1;
 
     public Car() {
         mass = 1000;
         speed = 0.0f;
         direction = 90;
-        //1m behind the startLine
-        position = new Vector(618.73d, 100.0d);
+        position = new Vector(615.0d, 100.0d);
         size = new Vector(2.027 * 10.0d, 4.255 * 10.0d);
         look = new Image("resources/car/car_black_1.png");
 

@@ -46,13 +46,7 @@ public class Obstacle {
 
         Vector pos = new Vector(x,y);
         Ellipse ell = GameView.getEllipse();
-        if (ell.contains(pos.getX(), pos.getY())){
 
-            //
-            //
-            //
-            // System.out.println("-------------------_");
-        }
 
         this.position = pos;
         size = new Vector(30,30);
