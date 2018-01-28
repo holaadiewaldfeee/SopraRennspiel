@@ -12,14 +12,14 @@ import java.util.ArrayList;
 public class GameModel {
 
 
-
     /**
      * The car that is driven on the racetrack
      */
-    private Car car;
+    private static Car car;
     private static ArrayList<Obstacle> obstaclesList = new ArrayList<>(Obstacle.MAXOBS);
-    Ellipse ell = GameView.getEllipse();
-    Ellipse ell2 = GameView.getEllipse2();
+    static Ellipse ell = GameView.getEllipse();
+    static Ellipse ell2 = GameView.getEllipse2();
+    public static long roundTime = 0;
 
     /**
      * Creates a gameModel, that handles most of the actions
@@ -36,32 +36,34 @@ public class GameModel {
      *
      * @return the initialized car
      */
-    private Car initializeCar() {
+    public static Car initializeCar() {
 
         //initialize a new car and give it the init values set in the static variables
         car = new Car();
         return car;
     }
 
-    private void initializeObstacles(){
-
+    public static void initializeObstacles() {
+        obstaclesList.clear();
         //create obstacles
         do {
             Obstacle o = new Obstacle();
-            System.out.println(o);
+            //System.out.println(o);
             //todo: abstand zu anderen obstacles
-            if (ell.contains(o.getX(), o.getY()) && !(ell2.contains(o.getX(), o.getY()))){
+            if (ell.contains(o.getX(), o.getY()) && !(ell2.contains(o.getX(), o.getY()))) {
                 obstaclesList.add(o);
-                System.out.println("-------------------");
+                //System.out.println("-------------------");
             }
 
 
-        }while(obstaclesList.size() < Obstacle.MAXOBS);
-
+        } while (obstaclesList.size() < Obstacle.MAXOBS);
+        //System.out.println("new ostacles");
     }
 
 
-    public void update(){}
+    public static void update(double time) {
+        roundTime += time;
+    }
 
 
     public Car getCar() {

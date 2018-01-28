@@ -13,7 +13,7 @@ import java.util.ArrayList;
 1) Sound: hab ne sound klasse gemacht und wollte dass es los geht sobald man die anwendung startet ging nicht und man muss noch n brum geräusch
 machen wenns auto fährt
 2) Timer: hab in der gameview n timer text gemacht der muss laufen wenn das auto losfährt
-3) Reset: beim r klicken soll alles zurückgesetzt werden also car auf anfangs position und timer zurück etc
+   Reset: timer zurück e
 4) obstacles sollen noch nen mindestabstand zur start ziel linie und checkpoint linie haben und zu sich selbst
 5) Kollision: mit den obstacles und mit den linien muss noch rein
 6) Totalschaden: bei zu hoher geschwindigkeit muss das auto boom kaputt gehen und game over dialog
@@ -85,14 +85,6 @@ public class Main extends Application {
 
         stage.show();
     }
-
-    //todo: hier wollte ich das reset dings machen
-    /*public static void newGame(){
-        controllerList.remove(1);
-        controllerList.remove(2);
-        controllerList.add(new GameController(gameModel));
-        controllerList.add(new PauseController(gameModel));
-    }*/
 
 
     /**

@@ -2,6 +2,8 @@ package controller;
 
 import application.Main;
 import javafx.stage.Stage;
+import model.GameModel;
+
 import java.util.ArrayList;
 
 public class MainController {
@@ -30,6 +32,7 @@ public class MainController {
     public void updateContinuously(double timeDifferenceInSeconds) {
         controllers.get(indx).updateKeys();
         controllers.get(indx).update();
+        GameModel.update(timeDifferenceInSeconds);
     }
 
     // change views through controllers

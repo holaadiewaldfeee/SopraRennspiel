@@ -64,9 +64,11 @@ public class GameView implements View {
         ellipse = getEllipse();
 
         BorderPane border = new BorderPane();
-        ImageView imgView = new ImageView(new Image("resources/racetrack/land_grass04.png"));
-        imgView.setScaleX(1300);
-        imgView.setScaleY(800);
+        ImageView imgView = new ImageView(new Image("resources/racetrack/gras.png"));
+        imgView.setX(1300);
+        imgView.setY(800);
+        imgView.setFitHeight(800);
+        imgView.setFitWidth(1300);
         border.setCenter(imgView);
 
         //inner

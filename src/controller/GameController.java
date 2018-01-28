@@ -1,9 +1,11 @@
 package controller;
 
+import application.Main;
 import javafx.scene.input.KeyCode;
 import model.GameModel;
 import view.GameView;
 import view.View;
+
 import java.util.ArrayList;;
 
 //todo: auto dreht und fährt nicht gleichzeitig
@@ -20,7 +22,6 @@ public class GameController implements Controller {
     public ArrayList<String> getInput() {
         return input;
     }
-
 
 
     public GameController(GameModel model) {
@@ -40,22 +41,22 @@ public class GameController implements Controller {
 
 
     @Override
-    public void updateKeys(){
-        if (input.contains("LEFT")){
+    public void updateKeys() {
+        if (input.contains("LEFT")) {
             gameModel.getCar().rotate(-ROTATEINTENSITY);
-            System.out.println("left");
+            //System.out.println("left");
         }
-        if (input.contains("RIGHT")){
-            System.out.println("right");
+        if (input.contains("RIGHT")) {
+            //System.out.println("right");
             gameModel.getCar().rotate(ROTATEINTENSITY);
 
         }
-        if (input.contains("UP")){
+        if (input.contains("UP")) {
             gameModel.getCar().setSpeed(-1);
-            System.out.println("up");
+            //System.out.println("up");
         }
-        if (input.contains("DOWN")){
-            System.out.println("down");
+        if (input.contains("DOWN")) {
+            //System.out.println("down");
             gameModel.getCar().setSpeed(1)
             ;
         }
@@ -65,41 +66,49 @@ public class GameController implements Controller {
     public void setupInteraction() {
 
 
-
         gameView.getScene().setOnKeyPressed(
                 e -> {
-                    if (e.getCode() == KeyCode.P){
+                    if (e.getCode() == KeyCode.P) {
                         System.out.println("pause Game");
                         MainController.changeController(2);
                     }
-                    if (e.getCode() == KeyCode.R){
+                    if (e.getCode() == KeyCode.R) {
                         System.out.println("reset Game");
                         //todo: reseten geht noch nicht -> stage neu laden?!
-                        //Main.newGame();
+                        newGame();
+                        gameView.setupGameWindow();
                     }
-                    if (e.getCode() == KeyCode.ESCAPE){
+                    if (e.getCode() == KeyCode.ESCAPE) {
                         System.out.println("hadebye");
                         System.exit(0);
                     }
                     String code = e.getCode().toString();
 
                     //only add once
-                    if ( !input.contains(code) )
-                        input.add( code );
+                    if (!input.contains(code))
+                        input.add(code);
                 });
 
         gameView.getScene().setOnKeyReleased(
                 e -> {
                     String code = e.getCode().toString();
-                    input.remove( code );
+                    input.remove(code);
                 });
 
     }
 
 
+    //todo: hier wollte ich das reset dings machen
+    private void newGame() {
+/*        controllerList.remove(1);
+        controllerList.remove(2);
+        controllerList.add(new GameController(gameModel));
+        controllerList.add(new PauseController(gameModel));*/
+        GameModel.initializeCar();
+        GameModel.initializeObstacles();
+    }
 
-
-    public View getView(){
+    public View getView() {
         return this.gameView;
     }
 

@@ -27,7 +27,7 @@ public class Obstacle {
         double y = ran.nextDouble()*800;
 
         Vector pos = new Vector(x,y);
-        Ellipse ell = GameView.getEllipse();
+        //Ellipse ell = GameView.getEllipse();
 
 
         this.position = pos;
