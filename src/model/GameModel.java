@@ -66,7 +66,7 @@ public class GameModel {
     }
 
 
-    public Car getCar() {
+    public static Car getCar() {
 
         return car;
     }

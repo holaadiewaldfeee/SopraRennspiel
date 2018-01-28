@@ -95,4 +95,8 @@ public class Car {
     public double getDirection() {
         return this.direction;
     }
+
+    public Sound getSound() {
+        return sound;
+    }
 }

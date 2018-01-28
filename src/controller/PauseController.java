@@ -21,7 +21,9 @@ public class PauseController implements Controller {
     @Override
     public void update(){
         pauseView.render(gameModel);
+        GameModel.getCar().getSound().pauseSound();
     }
+
     //handle input
     @Override
     public void setupInteraction() {

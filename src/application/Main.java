@@ -15,8 +15,6 @@ import java.util.ArrayList;
 
 
 /*todo:
-1) Sound: hab ne sound klasse gemacht und wollte dass es los geht sobald man die anwendung startet ging nicht und man muss noch n brum geräusch
-machen wenns auto fährt
 2) Timer: hab in der gameview n timer text gemacht der muss laufen wenn das auto losfährt
    Reset: timer zurück e
 4) obstacles sollen noch nen mindestabstand zur start ziel linie und checkpoint linie haben und zu sich selbst
