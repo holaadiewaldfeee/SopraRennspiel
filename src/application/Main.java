@@ -7,6 +7,25 @@ import javafx.stage.Stage;
 import model.GameModel;
 import java.util.ArrayList;
 
+
+
+/*todo:
+1) Sound: hab ne sound klasse gemacht und wollte dass es los geht sobald man die anwendung startet ging nicht und man muss noch n brum geräusch
+machen wenns auto fährt
+2) Timer: hab in der gameview n timer text gemacht der muss laufen wenn das auto losfährt
+3) Reset: beim r klicken soll alles zurückgesetzt werden also car auf anfangs position und timer zurück etc
+4) obstacles sollen noch nen mindestabstand zur start ziel linie und checkpoint linie haben und zu sich selbst
+5) Kollision: mit den obstacles und mit den linien muss noch rein
+6) Totalschaden: bei zu hoher geschwindigkeit muss das auto boom kaputt gehen und game over dialog
+7) game over dialog und game won dialog
+8) auto physik: rollwiderstand (gras und straße unterscheiden) und strömungswiderstand und ausrollen und beschleunigen
+9) Unit Tests
+10) Start und pause png zeug
+ */
+
+
+
+
 public class Main extends Application {
 
     private long oldTime;

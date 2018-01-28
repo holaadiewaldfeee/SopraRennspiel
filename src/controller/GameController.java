@@ -1,6 +1,5 @@
 package controller;
 
-import application.Main;
 import javafx.scene.input.KeyCode;
 import model.GameModel;
 import view.GameView;
