@@ -22,6 +22,7 @@ public class PauseController implements Controller {
     public void update(){
         pauseView.render(gameModel);
         GameModel.getCar().getSound().pauseSound();
+        GameModel.pauseTime();
     }
 
     //handle input

@@ -3,26 +3,21 @@ package application;
 import controller.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import model.GameModel;
 
-import java.io.File;
-import java.net.URI;
 import java.util.ArrayList;
 
 
 
 /*todo:
-2) Timer: hab in der gameview n timer text gemacht der muss laufen wenn das auto losfährt
-   Reset: timer zurück e
-5) Kollision: mit den obstacles und mit den linien muss noch rein
-6) Totalschaden: bei zu hoher geschwindigkeit muss das auto boom kaputt gehen und game over dialog
-7) game over dialog und game won dialog
-8) auto physik: rollwiderstand (gras und straße unterscheiden) und strömungswiderstand und ausrollen und beschleunigen
-9) Unit Tests
-10) Start und pause png zeug
+1) Timer: bei pause nicht weiterlaufen
+2) Kollision: mit den obstacles und mit den linien muss noch rein
+3) Totalschaden: bei zu hoher geschwindigkeit muss das auto boom kaputt gehen und game over dialog
+4) game over dialog und game won dialog
+5) auto physik: rollwiderstand (gras und straße unterscheiden) und strömungswiderstand und ausrollen und beschleunigen
+6) Unit Tests
+7) Start und pause png zeug plus auto bilder etc gui zeug
  */
 
 
@@ -38,7 +33,6 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
 
         //Create the instances for the game
-        ///home/sabrina/Schreibtisch/Rennspiel_Sabrina_Boehm/src/resources/sound
 
         // Sets general parameters for the stage
         stage.setTitle("Rennspiel_Sabrina_Boehm");

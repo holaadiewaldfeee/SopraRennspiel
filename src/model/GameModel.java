@@ -25,6 +25,7 @@ public class GameModel {
 
     public static double roundTime = 0;
     private static boolean roundStarted = false;
+    public static boolean gameRunning = true;
 
     /**
      * Creates a gameModel, that handles most of the actions
@@ -69,18 +70,15 @@ public class GameModel {
             //
             if (!isInCheck && !isInStart && ell.contains(o.getX(), o.getY()) && !(ell2.contains(o.getX(), o.getY())) && genugabstand) {
                 obstaclesList.add(o);
-                //System.out.println("-------------------");
             }
 
 
         } while (obstaclesList.size() < Obstacle.MAXOBS);
-        //System.out.println("new ostacles");
     }
 
 
     public static void update(double time) {
         roundTime += roundStarted ? time : 0;
-        //System.out.println(roundTime);
     }
 
 
@@ -106,5 +104,10 @@ public class GameModel {
 
     public static void stopRound() {
         roundStarted = false;
+    }
+    public static void pauseTime() {
+        if(gameRunning) {
+            gameRunning = false;
+        }
     }
 }

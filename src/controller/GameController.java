@@ -1,12 +1,10 @@
 package controller;
 
-import application.Main;
-import application.Sound;
+
 import javafx.scene.input.KeyCode;
 import javafx.scene.shape.Rectangle;
 import model.Car;
 import model.GameModel;
-import model.Vector;
 import view.GameView;
 import view.View;
 

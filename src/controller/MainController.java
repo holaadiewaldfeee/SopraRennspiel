@@ -27,8 +27,8 @@ public class MainController {
         this.controllers = controllers;
         changeController(indx);
 
-        s = new Sound("src/resources/sound/Eminem.wav");
-        s.playSound();
+        //s = new Sound("src/resources/sound/Eminem.wav");
+        //s.playSound();
     }
 
     /**
