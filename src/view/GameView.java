@@ -27,12 +27,13 @@ public class GameView implements View {
     private static Rectangle startLine;
     private static Rectangle startLineBounds;
     private static Rectangle checkLineBounds;
-    private Rectangle checkpointLine;
+    private static Rectangle checkpointLine;
     private static Ellipse ellipse;
     private static Ellipse ellipse2;
     private Ellipse ellipse3;
 
-    public boolean checkPoint = false;
+
+    public static boolean checkPoint = false;
 
     private Text time;
 
@@ -52,15 +53,10 @@ public class GameView implements View {
 
         gamePane = new Pane();
 
-        Text text = new Text("Rennspiel_GameView");
-        text.setLayoutX(10);
-        text.setLayoutY(20);
-        text.setFont(new Font("Arial Black", 20));
-
 
         time = new Text("00:00");
-        time.setLayoutX(100);
-        time.setLayoutY(100);
+        time.setLayoutX(82);
+        time.setLayoutY(113);
         time.setFont(new Font("Arial Black", 30));
 
 
@@ -73,6 +69,12 @@ public class GameView implements View {
         imgView.setFitHeight(800);
         imgView.setFitWidth(1300);
         border.setCenter(imgView);
+
+        Rectangle timeBack = new Rectangle(50,15,150,150);
+        timeBack.setFill(new ImagePattern(new Image("resources/stoppuhr.png")));
+
+        Rectangle baum = new Rectangle(450 ,250,350,350);
+        baum.setFill(new ImagePattern(new Image("resources/racetrack/baum.png")));
 
         //inner
         ellipse2 = getEllipse2();
@@ -91,21 +93,19 @@ public class GameView implements View {
         startLineBounds = getStartLineBounds();
         checkLineBounds = getCheckLineBounds();
 
-        checkpointLine = new Rectangle(10, 100);
-        checkpointLine.setLayoutX(650);
-        checkpointLine.setLayoutY(650);
-        if (checkPoint) {
-            checkpointLine.setFill(Color.YELLOWGREEN);
-        } else {
-            checkpointLine.setFill(Color.INDIANRED);
-        }
+        checkpointLine = getCheckLine();
+
+
+
+
 
         gamePane.getChildren().add(border);
         gamePane.getChildren().add(ellipse);
         gamePane.getChildren().add(ellipse2);
         gamePane.getChildren().add(ellipse3);
-        gamePane.getChildren().add(text);
         gamePane.getChildren().add(time);
+        gamePane.getChildren().add(timeBack);
+        gamePane.getChildren().add(baum);
         gamePane.getChildren().add(startLine);
         gamePane.getChildren().add(startLineBounds);
         gamePane.getChildren().add(checkLineBounds);
@@ -151,7 +151,7 @@ public class GameView implements View {
 
         int seconds = (int) GameModel.roundTime % 60;
         int minute = (int) (GameModel.roundTime / 60);
-        time.setText(String.format("%d:%d", minute, seconds));
+        time.setText(String.format("%02d:%02d", minute, seconds));
     }
 
     public static Ellipse getEllipse() {
@@ -161,7 +161,8 @@ public class GameView implements View {
         ellipse.setRadiusX(500);
         ellipse.setRadiusY(300);
         ellipse.setFill(Color.TRANSPARENT);
-        ellipse.setStroke(Color.GRAY);
+        ellipse.setStroke(new ImagePattern(new Image("resources/racetrack/ashalt.png")));
+        //ellipse.setStroke(Color.GRAY);
         //better strokeWidth then two ellipses;)
         ellipse.setStrokeWidth(100);
         return ellipse;
@@ -197,5 +198,17 @@ public class GameView implements View {
         startLine.setFill(Color.WHITESMOKE);
         startLine.setFill(new ImagePattern(new Image("resources/lines/barrier_white.png")));
         return startLine;
+    }
+    public static Rectangle getCheckLine() {
+        checkpointLine = new Rectangle(10, 100);
+        checkpointLine.setLayoutX(650);
+        checkpointLine.setLayoutY(650);
+        checkpointLine.setFill(Color.ORANGERED);
+        return checkpointLine;
+    }
+    public static void changeCheckpoint(){
+        if (checkPoint) {
+            checkpointLine.setFill(Color.YELLOWGREEN);
+        }
     }
 }

@@ -2,6 +2,9 @@ package view;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
@@ -17,7 +20,7 @@ public class PauseView implements View {
 
     public Button backToGame;
 
-    public Text text;
+
     public Text pausetext;
 
     public PauseView() {
@@ -32,23 +35,18 @@ public class PauseView implements View {
 
         gamePane = new Pane();
 
-        Text text = new Text("Rennspiel_PauseView");
-        text.setLayoutX(10);
-        text.setLayoutY(20);
-        text.setFont(new Font("Arial Black", 20));
-
-        pausetext = new Text("Jetzt ist gerade Pause, drücke p um sie zu beenden");
-        pausetext.setLayoutX(100);
-        pausetext.setLayoutY(200);
-        pausetext.setFont(new Font("Arial Black", 20));
-
         backToGame = new Button("Pause beenden");
-        backToGame.setLayoutX(800);
-        backToGame.setLayoutY(500);
+        backToGame.setLayoutX(850);
+        backToGame.setLayoutY(650);
         backToGame.setStyle("-fx-font-size: 40pt;");
 
-        gamePane.getChildren().add(text);
-        gamePane.getChildren().add(pausetext);
+        BorderPane paus = new BorderPane();
+        ImageView imgView2 = new ImageView(new Image("resources/pauseView11l.png"));
+        imgView2.setFitHeight(800);
+        imgView2.setFitWidth(1300);
+        paus.setCenter(imgView2);
+
+        gamePane.getChildren().add(paus);
         gamePane.getChildren().add(backToGame);
         rootPane.getChildren().add(gamePane);
     }

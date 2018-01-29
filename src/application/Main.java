@@ -11,13 +11,15 @@ import java.util.ArrayList;
 
 
 /*todo:
+0) Sound für crash und bei reset aus
 1) Timer: bei pause nicht weiterlaufen
 2) Kollision: mit den obstacles und mit den linien muss noch rein
 3) Totalschaden: bei zu hoher geschwindigkeit muss das auto boom kaputt gehen und game over dialog
 4) game over dialog und game won dialog
 5) auto physik: rollwiderstand (gras und straße unterscheiden) und strömungswiderstand und ausrollen und beschleunigen
 6) Unit Tests
-7) Start und pause png zeug plus auto bilder etc gui zeug
+7) nicht rausfahren aus dem fenster
+8) Start und pause png zeug plus auto bilder etc gui zeug
  */
 
 

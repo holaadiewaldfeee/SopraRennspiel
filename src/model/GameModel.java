@@ -54,7 +54,7 @@ public class GameModel {
         //create obstacles
         do {
             Obstacle o = new Obstacle();
-            System.out.println(o);
+            //System.out.println(o);
             //todo: abstand zu anderen obstacles
             boolean genugabstand = true;
             for (Obstacle o_t : obstaclesList) {
@@ -79,6 +79,7 @@ public class GameModel {
 
     public static void update(double time) {
         roundTime += roundStarted ? time : 0;
+        //GameView.changeCheckpoint();
     }
 
 

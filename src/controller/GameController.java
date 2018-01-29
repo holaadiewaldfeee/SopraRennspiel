@@ -43,6 +43,16 @@ public class GameController implements Controller {
                 brumm.getMidPoint().getY() < tY){
             GameModel.startRound();
         }
+        //todo: hier versuchen checkpoint linie farbe zu ändern
+       /* Rectangle cL = GameView.getCheckLine();
+        double cX = cL.getLayoutX()+ cL.getWidth()/2;
+        double cY = cL.getLayoutY() + cL.getHeight();
+        if(Math.abs(brumm.getMidPoint().getX() - cX) < 5 &&
+                brumm.getMidPoint().getY() > cL.getY() &&
+                brumm.getMidPoint().getY() < cY){
+           GameView.checkPoint = true;
+           GameView.changeCheckpoint();
+        }*/
         gameView.render(gameModel);
     }
 
@@ -83,6 +93,7 @@ public class GameController implements Controller {
                         //todo: reseten geht noch nicht -> stage neu laden?!
                         newGame();
                         gameView.setupGameWindow();
+                        Car.sound.pauseSound();
                     }
                     if (e.getCode() == KeyCode.ESCAPE) {
                         System.out.println("hadebye");
@@ -113,6 +124,7 @@ public class GameController implements Controller {
         GameModel.initializeCar();
         GameModel.initializeObstacles();
         GameModel.resetTime();
+
     }
 
     public View getView() {

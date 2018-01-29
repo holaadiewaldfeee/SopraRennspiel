@@ -19,12 +19,14 @@ public class Car {
     private float v = 1.0f;
     public static boolean damage = false;
 
-    private final float ROLLINGRESISTANCESTREET = (0.015f * 981.0f) / 1200.0f; //Rollwiederstand straße
-    private final float ROLLINGRESISTANCEGRAS = (0.05f * 981.0f) / 1200.0f; // Rollwiderstand gras
+    private final float ROLLINGRESISTANCESTREET = (0.015f * 981.0f) * 1200.0f; //Rollwiederstand straße
+    private final float ROLLINGRESISTANCEGRAS = (0.05f * 981.0f) * 1200.0f; // Rollwiderstand gras
     private final float MAXSPEEDFORDAMAGE = 100000.0f;
     // private final float FLOWRESISTANCE = 0.28f * 2.19f * (0.5f*1.2041f) * (Math.pow( (float) v , (float) 2.0f));
 
-    private Sound sound;
+
+    //mal das gewicht beim rollwiderstand und wenn luft dabei dann alles geteilt durch masse
+    public static Sound sound;
 
     public Car() {
         mass = 1200;
@@ -33,7 +35,7 @@ public class Car {
         position = new Vector(615.0d, 100.0d);
         size = new Vector(2.027 * 10.0d, 4.255 * 10.0d);
         if (!damage) {
-            look = new Image("resources/car/car_black_1.png");
+            look = new Image("resources/car/car_yellow_1.png");
         } else {
             //todo: ein damage car basteln png
             look = new Image("resources/car/car_black_1.png");
