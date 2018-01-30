@@ -7,21 +7,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import model.GameModel;
 
 public class PauseView implements View {
 
-
     private Scene scene;
     private StackPane rootPane;
     private Pane gamePane;
-
     public Button backToGame;
 
-
-    public Text pausetext;
 
     public PauseView() {
         rootPane = new StackPane();
@@ -29,7 +23,7 @@ public class PauseView implements View {
         setupGameWindow();
     }
 
-    //Sets up pauseButton window
+    //Sets up pause window
     @Override
     public void setupGameWindow() {
 

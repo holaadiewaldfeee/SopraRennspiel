@@ -3,7 +3,6 @@ package model;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import view.GameView;
-
 import java.util.ArrayList;
 
 /**
@@ -12,10 +11,6 @@ import java.util.ArrayList;
  */
 public class GameModel {
 
-
-    /**
-     * The car that is driven on the racetrack
-     */
     private static Car car;
     private static ArrayList<Obstacle> obstaclesList = new ArrayList<>(Obstacle.MAXOBS);
     static Ellipse ell = GameView.getEllipse();
@@ -32,7 +27,7 @@ public class GameModel {
      */
     public GameModel() {
 
-        //initialize Car, default data in GameView
+        //initialize Car
         car = initializeCar();
         initializeObstacles();
     }
@@ -55,10 +50,9 @@ public class GameModel {
         do {
             Obstacle o = new Obstacle();
             //System.out.println(o);
-            //todo: abstand zu anderen obstacles
             boolean genugabstand = true;
-            for (Obstacle o_t : obstaclesList) {
-                double abstand = Math.sqrt(Math.pow(o.getX() - o_t.getX(), 2) + Math.pow(o.getY() - o_t.getY(), 2));
+            for (Obstacle oTemp : obstaclesList) {
+                double abstand = Math.sqrt(Math.pow(o.getX() - oTemp.getX(), 2) + Math.pow(o.getY() - oTemp.getY(), 2));
                 if (abstand < 100) {
                     genugabstand = false;
                     break;
@@ -67,11 +61,10 @@ public class GameModel {
 
             boolean isInStart = sLB.contains(o.getX(), o.getY());
             boolean isInCheck = cLB.contains(o.getX(), o.getY());
-            //
+
             if (!isInCheck && !isInStart && ell.contains(o.getX(), o.getY()) && !(ell2.contains(o.getX(), o.getY())) && genugabstand) {
                 obstaclesList.add(o);
             }
-
 
         } while (obstaclesList.size() < Obstacle.MAXOBS);
     }

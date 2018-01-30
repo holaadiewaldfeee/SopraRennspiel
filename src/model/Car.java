@@ -1,7 +1,6 @@
 package model;
 
 
-import application.Sound;
 import javafx.scene.image.Image;
 
 /**
@@ -15,7 +14,8 @@ public class Car {
     private Vector position;
     private Vector size;
     private Image look;
-    //v soll speed sien aber sonst wird null
+    public static Sound sound;
+    //v soll speed sein aber sonst wird null
     private float v = 1.0f;
     public static boolean damage = false;
 
@@ -26,7 +26,7 @@ public class Car {
 
 
     //mal das gewicht beim rollwiderstand und wenn luft dabei dann alles geteilt durch masse
-    public static Sound sound;
+
 
     public Car() {
         mass = 1200;
@@ -37,7 +37,7 @@ public class Car {
         if (!damage) {
             look = new Image("resources/car/car_yellow_1.png");
         } else {
-            //todo: ein damage car basteln png
+            //todo: ein damage car basteln png aber nicht hier das image changen das wäre doof sondern wos upgedated wird
             look = new Image("resources/car/car_black_1.png");
         }
 

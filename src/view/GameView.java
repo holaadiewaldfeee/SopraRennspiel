@@ -19,11 +19,7 @@ import model.GameModel;
 
 public class GameView implements View {
 
-    private Scene scene;
-    private StackPane rootPane;
-    private Pane gamePane;
-
-    private Rectangle car;
+    public static boolean checkPoint = false;
     private static Rectangle startLine;
     private static Rectangle startLineBounds;
     private static Rectangle checkLineBounds;
@@ -31,10 +27,12 @@ public class GameView implements View {
     private static Ellipse ellipse;
     private static Ellipse ellipse2;
     private Ellipse ellipse3;
-
-
-    public static boolean checkPoint = false;
-
+    private Rectangle timeBack;
+    private Rectangle baum;
+    private Scene scene;
+    private StackPane rootPane;
+    private Rectangle car;
+    private Pane gamePane;
     private Text time;
 
     public GameView() {
@@ -50,17 +48,12 @@ public class GameView implements View {
     //Sets up game window
     public void setupGameWindow() {
 
-
         gamePane = new Pane();
-
 
         time = new Text("00:00");
         time.setLayoutX(82);
         time.setLayoutY(113);
         time.setFont(new Font("Arial Black", 30));
-
-
-        ellipse = getEllipse();
 
         BorderPane border = new BorderPane();
         ImageView imgView = new ImageView(new Image("resources/racetrack/gras.png"));
@@ -70,11 +63,13 @@ public class GameView implements View {
         imgView.setFitWidth(1300);
         border.setCenter(imgView);
 
-        Rectangle timeBack = new Rectangle(50,15,150,150);
+        timeBack = new Rectangle(50, 15, 150, 150);
         timeBack.setFill(new ImagePattern(new Image("resources/stoppuhr.png")));
 
-        Rectangle baum = new Rectangle(450 ,250,350,350);
+        baum = new Rectangle(450, 250, 350, 350);
         baum.setFill(new ImagePattern(new Image("resources/racetrack/baum.png")));
+
+        ellipse = getEllipse();
 
         //inner
         ellipse2 = getEllipse2();
@@ -95,10 +90,6 @@ public class GameView implements View {
 
         checkpointLine = getCheckLine();
 
-
-
-
-
         gamePane.getChildren().add(border);
         gamePane.getChildren().add(ellipse);
         gamePane.getChildren().add(ellipse2);
@@ -112,7 +103,6 @@ public class GameView implements View {
         gamePane.getChildren().add(checkpointLine);
 
         //obs generate
-
         for (Obstacle o : GameModel.getObstacles()) {
             Rectangle rec = new Rectangle(o.getX(), o.getY(), o.getWidth(), o.getHeight());
             //System.out.println(rec);
@@ -120,8 +110,8 @@ public class GameView implements View {
             gamePane.getChildren().add(rec);
         }
 
-
         car = new Rectangle(1, 1);
+
         gamePane.getChildren().add(car);
 
         rootPane.getChildren().add(gamePane);
@@ -131,8 +121,6 @@ public class GameView implements View {
         return scene;
     }
 
-    //update car
-    //todo: update obstacles
     public void render(GameModel m) {
         Car c = m.getCar();
         c.update();
@@ -162,8 +150,6 @@ public class GameView implements View {
         ellipse.setRadiusY(300);
         ellipse.setFill(Color.TRANSPARENT);
         ellipse.setStroke(new ImagePattern(new Image("resources/racetrack/ashalt.png")));
-        //ellipse.setStroke(Color.GRAY);
-        //better strokeWidth then two ellipses;)
         ellipse.setStrokeWidth(100);
         return ellipse;
     }
@@ -199,6 +185,7 @@ public class GameView implements View {
         startLine.setFill(new ImagePattern(new Image("resources/lines/barrier_white.png")));
         return startLine;
     }
+
     public static Rectangle getCheckLine() {
         checkpointLine = new Rectangle(10, 100);
         checkpointLine.setLayoutX(650);
@@ -206,7 +193,8 @@ public class GameView implements View {
         checkpointLine.setFill(Color.ORANGERED);
         return checkpointLine;
     }
-    public static void changeCheckpoint(){
+
+    public static void changeCheckpoint() {
         if (checkPoint) {
             checkpointLine.setFill(Color.YELLOWGREEN);
         }

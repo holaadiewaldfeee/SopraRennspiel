@@ -1,20 +1,16 @@
 package controller;
 
-import application.Main;
-import application.Sound;
-import javafx.scene.media.MediaPlayer;
+import model.Sound;
 import javafx.stage.Stage;
 import model.GameModel;
-
 import java.util.ArrayList;
 
 public class MainController {
 
     private static Stage stage;
     public static ArrayList<Controller> controllers;
-    private static int indx = 0;
-
-    private Sound s;
+    private static int index = 0;
+    //private Sound s;
 
     /**
      * The Main Controller of the game. It will manage all views as well as the subcontrollers designated to interact
@@ -25,7 +21,7 @@ public class MainController {
     public MainController(Stage stage, ArrayList<Controller> controllers) {
         this.stage = stage;
         this.controllers = controllers;
-        changeController(indx);
+        changeController(index);
 
         //s = new Sound("src/resources/sound/Eminem.wav");
         //s.playSound();
@@ -37,15 +33,14 @@ public class MainController {
      * @param timeDifferenceInSeconds the time passed since last frame
      */
     public void updateContinuously(double timeDifferenceInSeconds) {
-        controllers.get(indx).updateKeys();
-        controllers.get(indx).update();
+        controllers.get(index).updateKeys();
+        controllers.get(index).update();
         GameModel.update(timeDifferenceInSeconds);
     }
 
-    // change views through controllers
     static void changeController(int i) {
-        indx = i;
-        stage.setScene(controllers.get(indx).getView().getScene());
+        index = i;
+        stage.setScene(controllers.get(index).getView().getScene());
     }
 
 }

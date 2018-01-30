@@ -7,24 +7,14 @@ import model.Car;
 import model.GameModel;
 import view.GameView;
 import view.View;
-
-import java.util.ArrayList;;
-
-//todo: auto dreht und fährt nicht gleichzeitig
+import java.util.ArrayList;
 
 public class GameController implements Controller {
 
     private GameView gameView;
     private static GameModel gameModel;
     private final static int ROTATEINTENSITY = 1;
-
-
-    ArrayList<String> input = new ArrayList<String>();
-
-    public ArrayList<String> getInput() {
-        return input;
-    }
-
+    ArrayList<String> input = new ArrayList<>();
 
     public GameController(GameModel model) {
         gameView = new GameView();
@@ -64,8 +54,8 @@ public class GameController implements Controller {
             //System.out.println("left");
         }
         if (input.contains("RIGHT")) {
-            //System.out.println("right");
             gameModel.getCar().rotate(ROTATEINTENSITY);
+            //System.out.println("right");
 
         }
         if (input.contains("UP")) {
@@ -73,24 +63,22 @@ public class GameController implements Controller {
             //System.out.println("up");
         }
         if (input.contains("DOWN")) {
-            //System.out.println("down");
             gameModel.getCar().setSpeed(1);
+            //System.out.println("down");
         }
     }
 
     @Override
     public void setupInteraction() {
 
-
         gameView.getScene().setOnKeyPressed(
                 e -> {
                     if (e.getCode() == KeyCode.P) {
-                        System.out.println("pause Game");
+                        //System.out.println("pause Game");
                         MainController.changeController(2);
                     }
                     if (e.getCode() == KeyCode.R) {
-                        System.out.println("reset Game");
-                        //todo: reseten geht noch nicht -> stage neu laden?!
+                        //System.out.println("reset Game");
                         newGame();
                         gameView.setupGameWindow();
                         Car.sound.pauseSound();

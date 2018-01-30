@@ -42,7 +42,6 @@ public class StartController implements Controller {
                 MainController.changeController(1);
             }
         });
-
     }
 
     @Override

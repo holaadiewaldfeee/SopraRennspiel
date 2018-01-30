@@ -51,6 +51,7 @@ public class PauseController implements Controller {
     public View getView() {
         return this.pauseView;
     }
+
     @Override
     public void updateKeys() {
 
