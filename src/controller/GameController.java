@@ -85,7 +85,7 @@ public class GameController implements Controller {
                 if (Math.abs(brumm.getSpeed()) > brumm.crashesAt) {
                     GameView.lostPane.setVisible(true);
                 }
-                GameModel.getCar().setSpeed(0);
+                GameModel.getCar().crash();
             }
             t.getBoundsInParent();
             // s.setFill(Color.MAGENTA);

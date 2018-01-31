@@ -10,10 +10,10 @@ public class Sound {
 
     private MediaPlayer player;
 
-    public Sound(String file) {
+    public Sound(String file, boolean loop) {
         Media sound = new Media(new File(file).toURI().toString());
         player = new MediaPlayer(sound);
-        player.setOnEndOfMedia(() -> player.seek(Duration.ZERO));
+        if(loop) player.setOnEndOfMedia(() -> player.seek(Duration.ZERO));
     }
 
     public void playSound() {

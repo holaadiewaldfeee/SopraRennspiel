@@ -26,6 +26,7 @@ public class Car {
 
     //private float v = 1.0f;
     public static Sound sound;
+    private static Sound crashSound;
     public static boolean damage = false;
     public static boolean onAsphalt = true;
 
@@ -39,8 +40,8 @@ public class Car {
         size = new Vector(2.027 * 10.0d, 4.255 * 10.0d);
         look = new Image("resources/car/car_yellow_1.png");
 
-        sound = new Sound("src/resources/sound/345925__1histori__car-engine.wav");
-        //sound = new Sound("src/resources/sound/Game_Over.wav");
+        sound = new Sound("src/resources/sound/345925__1histori__car-engine.wav", true);
+        crashSound = new Sound("src/resources/sound/Game_Over.wav", false);
     }
 
     public void update(double deltaTime) {
@@ -115,8 +116,9 @@ public class Car {
         return speed;
     }
 
-    public void setSpeed(double speed) {
-        this.speed = speed;
+    public void crash() {
+        this.speed = 0;
+        crashSound.playSound();
     }
 
     public double getX() {
