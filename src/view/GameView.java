@@ -149,7 +149,7 @@ public class GameView implements View {
 
         lostPane.getChildren().add(startAfterLost);
         lostPane.getChildren().add(lostText);
-        lostPane.setStyle("-fx-background-color: #bada55");
+        lostPane.setStyle("-fx-background-color: #bada5577");
         lostPane.setVisible(false);
 
         gamePane.getChildren().add(car);

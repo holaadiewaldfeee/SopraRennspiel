@@ -22,6 +22,7 @@ public class GameModel {
     public static double roundTime = 0;
     public static boolean roundStarted = false;
     public static boolean checkpointPassed = false;
+    public static boolean isPaused = false;
 
     /**
      * Creates a gameModel, that handles most of the actions
@@ -41,6 +42,7 @@ public class GameModel {
     public static Car initializeCar() {
         //initialize a new car and give it the init values set in the static variables
         car = new Car();
+        car.setUpLookAndFeel();
         return car;
     }
 
@@ -72,7 +74,7 @@ public class GameModel {
 
     public static void update(double time) {
         roundTime += roundStarted ? time : 0;
-        car.update(time);
+       if(!isPaused) car.update(time);
     }
 
 

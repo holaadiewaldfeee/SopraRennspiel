@@ -43,6 +43,7 @@ public class PauseController implements Controller {
                 System.out.println("play");
                 MainController.changeController(1);
                 GameModel.startRound();
+                GameModel.isPaused = false;
             }
 
         });

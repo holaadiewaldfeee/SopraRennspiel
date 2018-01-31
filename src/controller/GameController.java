@@ -41,6 +41,7 @@ public class GameController implements Controller {
                 brumm.getMidPoint().getY() < tempY) {
             if (GameModel.checkpointPassed && GameModel.roundStarted) {
                 GameView.wonPane.setVisible(true);
+                GameModel.getCar().getSound().stopSound();
                 GameModel.stopRound();
 
                 int seconds = (int) GameModel.roundTime % 60;
@@ -84,6 +85,8 @@ public class GameController implements Controller {
             if (!s.getLayoutBounds().isEmpty()) {
                 if (Math.abs(brumm.getSpeed()) > brumm.crashesAt) {
                     GameView.lostPane.setVisible(true);
+                    GameModel.getCar().getSound().playSound();
+                    GameModel.getCar().damage = true;
                 }
                 GameModel.getCar().crash();
             }
@@ -129,7 +132,9 @@ public class GameController implements Controller {
                     if (e.getCode() == KeyCode.P) {
                         //System.out.println("pause Game");
                         MainController.changeController(2);
+                        GameModel.isPaused = true;
                         GameModel.stopRound();
+
                     }
                     if (e.getCode() == KeyCode.R) {
                         newGame();
@@ -174,7 +179,7 @@ public class GameController implements Controller {
         GameModel.initializeCar();
         GameModel.initializeObstacles();
         GameModel.resetTime();
-
+        GameModel.getCar().damage = false;
         gameView.setupGameWindow();
         setupInteraction();
     }

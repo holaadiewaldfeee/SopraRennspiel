@@ -11,9 +11,6 @@ import java.util.ArrayList;
 
 /*todo:
 3) Totalschaden: bei zu hoher geschwindigkeit muss das auto boom kaputt gehen und game over dialog
-4) game over dialog und game won dialog
-5) (solala gelöst :) ) auto physik: rollwiderstand (gras und straße unterscheiden) und strömungswiderstand und ausrollen und beschleunigen
-6) Ziel zeit aus auto stopp alles ende -> game won dialog ( checkpoint muss pberfahren sein )
 7) Unit Tests
  */
 

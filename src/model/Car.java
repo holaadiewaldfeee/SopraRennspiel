@@ -22,6 +22,7 @@ public class Car {
     private float direction;
     private Vector position;
     private Image look;
+    private Image crashLook;
     //v soll speed sein aber sonst wird null
 
     //private float v = 1.0f;
@@ -33,12 +34,16 @@ public class Car {
     /// Speed at whitch the car will total
     public float crashesAt = 4;
 
-    Car() {
+    public Car() {
         speed = 0.0f;
         direction = 90;
         position = new Vector(615.0d, 100.0d);
         size = new Vector(2.027 * 10.0d, 4.255 * 10.0d);
+    }
+
+    public void setUpLookAndFeel(){
         look = new Image("resources/car/car_yellow_1.png");
+        crashLook = new Image("resources/car/car_yellow_2.png");
 
         sound = new Sound("src/resources/sound/345925__1histori__car-engine.wav", true);
         crashSound = new Sound("src/resources/sound/Game_Over.wav", false);
@@ -48,7 +53,7 @@ public class Car {
         accelerate(deltaTime);
         calculateResistance(deltaTime);
         if (Math.abs(speed) <= 0.05) speed = 0;
-        playSound();
+        //playSound();
 
         this.position.x += Math.cos(Math.toRadians(this.direction) + Math.PI / 2) * this.speed;
         this.position.y += Math.sin(Math.toRadians(this.direction) + Math.PI / 2) * this.speed;
@@ -68,7 +73,7 @@ public class Car {
         }
     }
 
-    private void accelerate(double deltaTime) {
+    public void accelerate(double deltaTime) {
         // The acceleration of a golf 7 is ~3.2 m/s²
         if (this.isAccelerating != 0) {
             speed = speed + isAccelerating * 3.2f * 1.1 * deltaTime;
@@ -118,7 +123,6 @@ public class Car {
 
     public void crash() {
         this.speed = 0;
-        crashSound.playSound();
     }
 
     public double getX() {
@@ -138,7 +142,7 @@ public class Car {
     }
 
     public Image getLook() {
-        return look;
+        return damage ? crashLook : look;
     }
 
     public double getDirection() {
