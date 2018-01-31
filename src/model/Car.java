@@ -47,7 +47,9 @@ public class Car {
 
     public void update(double deltaTime) {
         accelerate(deltaTime);
+        System.out.println(speed);
         calculateResistance(deltaTime);
+        if(Math.abs(speed) <= 0.05) speed = 0;
         playSound();
 
         this.position.x += Math.cos(Math.toRadians(this.direction) + Math.PI / 2) * this.speed;
@@ -70,9 +72,13 @@ public class Car {
 
     private void accelerate(double deltaTime) {
         // The acceleration of a golf 7 is ~3.2 m/s²
-        if (speed >= -10.0 && this.isAccelerating != 0) {
-            speed = speed + isAccelerating * 3.2f * 20 * deltaTime;
+        if (this.isAccelerating != 0) {
+            speed = speed + isAccelerating * 3.2f * 1.1 * deltaTime;
+
+            // clamp the speed to [-10: 10]
+            speed = Math.max(-8, Math.min(8, speed));
         }
+
     }
 
     public void isAccelerating(int isIt) {
@@ -80,13 +86,17 @@ public class Car {
     }
 
     private void calculateResistance(double deltaTime) {
+        double verlangsamung = 1.0d;
         if (onAsphalt) {
-            speed = speed * (1 - ROLLINGRESISTANCESTREET * deltaTime);
+            verlangsamung *= (1 - ROLLINGRESISTANCESTREET * deltaTime);
         } else {
-            speed = speed * (1 - ROLLINGRESISTANCEGRAS * deltaTime);
+            verlangsamung *= (1 - ROLLINGRESISTANCEGRAS * deltaTime);
         }
-        double f_resist = 0.28f * 2.19f * (0.5f * 1.2041f) * (Math.pow((float) speed, 2.0f));
-        speed = speed * (1 - f_resist * deltaTime);
+        double s_temp = Math.abs(speed);
+        double f_resist = 0.28f * 219 * (0.5f * 1.2041f) * (Math.pow(s_temp, 1.5f)) / MASS;
+        verlangsamung *= (1 - f_resist * deltaTime);
+
+        speed *= verlangsamung;
     }
 
     private void playSound() {

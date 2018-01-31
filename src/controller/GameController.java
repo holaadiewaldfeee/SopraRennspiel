@@ -15,7 +15,7 @@ public class GameController implements Controller {
 
     private GameView gameView;
     private static GameModel gameModel;
-    private final static int ROTATEINTENSITY = 1;
+    private final static int ROTATEINTENSITY = 3;
     ArrayList<String> input = new ArrayList<>();
 
     public GameController(GameModel model) {
