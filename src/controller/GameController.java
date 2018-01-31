@@ -34,19 +34,24 @@ public class GameController implements Controller {
 
         Rectangle sL = GameView.getStartLine();
         double tempX = sL.getLayoutX() + sL.getWidth() / 2;
-        double tempY = sL.getLayoutY() + sL.getHeight();
+        double tempY = sL.getLayoutY() + sL.getHeight() * 1.2;
         if (Math.abs(brumm.getMidPoint().getX() - tempX) < 5 &&
                 brumm.getMidPoint().getY() > sL.getLayoutY() &&
                 brumm.getMidPoint().getY() < tempY) {
-            GameModel.startRound();
+            if (GameModel.checkpointPassed && GameModel.roundStarted) {
+                GameView.wonPane.setVisible(true);
+            } else {
+                GameModel.startRound();
+            }
         }
         //todo: hier versuchen checkpoint linie farbe zu ändern
         Rectangle cL = GameView.getCheckLine();
         double tempCX = cL.getLayoutX() + cL.getWidth() / 2;
-        double tempCY = cL.getLayoutY() + cL.getHeight();
+        double tempCY = cL.getLayoutY() + cL.getHeight() * 1.2;
         if (Math.abs(brumm.getMidPoint().getX() - tempCX) < 5 &&
                 brumm.getMidPoint().getY() > cL.getLayoutY() &&
-                brumm.getMidPoint().getY() < tempCY) {
+                brumm.getMidPoint().getY() < tempCY &&
+                GameModel.roundStarted) {
             GameModel.checkpointPassed = true;
         }
 
@@ -114,12 +119,7 @@ public class GameController implements Controller {
                         GameModel.stopRound();
                     }
                     if (e.getCode() == KeyCode.R) {
-                        //System.out.println("reset Game");
-                        GameModel.getCar().sound.stopSound();
                         newGame();
-                        gameView.setupGameWindow();
-
-                        GameModel.checkpointPassed = false;
                     }
                     if (e.getCode() == KeyCode.ESCAPE) {
                         System.out.println("hadebye");
@@ -138,6 +138,15 @@ public class GameController implements Controller {
                     input.remove(code);
                 });
 
+        gameView.startAfterWon.setOnAction(e -> {
+            GameView.wonPane.setVisible(false);
+            newGame();
+        });
+
+        gameView.startAfterLost.setOnAction(e -> {
+            GameView.lostPane.setVisible(false);
+            newGame();
+        });
     }
 
 
@@ -147,10 +156,14 @@ public class GameController implements Controller {
         controllerList.remove(2);
         controllerList.add(new GameController(gameModel));
         controllerList.add(new PauseController(gameModel));*/
+        GameModel.getCar().sound.stopSound();
+        GameModel.checkpointPassed = false;
         GameModel.initializeCar();
         GameModel.initializeObstacles();
         GameModel.resetTime();
 
+        gameView.setupGameWindow();
+        setupInteraction();
     }
 
     public View getView() {

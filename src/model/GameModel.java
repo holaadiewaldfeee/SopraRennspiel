@@ -20,7 +20,7 @@ public class GameModel {
     static Rectangle cLB = GameView.getCheckLineBounds();
 
     public static double roundTime = 0;
-    private static boolean roundStarted = false;
+    public static boolean roundStarted = false;
     public static boolean checkpointPassed = false;
 
     /**

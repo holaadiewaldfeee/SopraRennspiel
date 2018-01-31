@@ -73,7 +73,7 @@ public class Main extends Application {
 
 
     /**
-     * Launches the Application (calls startButton overriden startButton method)
+     * Launches the Application (calls startAfterWon overriden startAfterWon method)
      *
      * @param args
      */

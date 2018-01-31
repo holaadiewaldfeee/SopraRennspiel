@@ -4,9 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Ellipse;
@@ -37,6 +35,9 @@ public class GameView implements View {
     public static Pane wonPane;
     public static Pane lostPane;
     private Text time;
+
+    public Button startAfterWon;
+    public Button startAfterLost;
 
     public GameView() {
         rootPane = new StackPane();
@@ -123,38 +124,40 @@ public class GameView implements View {
 
         Text winningText = new Text("Herzlichen Gluckwunsch!");
         winningText.setStyle("-fx-font-size: 40pt;");
-        winningText.setLayoutX(650);
+        winningText.setLayoutX(400);
         winningText.setLayoutY(300);
 
-        Button startButton = new Button("Back to the future!");
-        startButton.setLayoutX(650);
-        startButton.setLayoutY(400);
-        startButton.setStyle("-fx-font-size: 40pt;");
+        startAfterWon = new Button("Neues Spiel starten");
+        startAfterWon.setLayoutX(400);
+        startAfterWon.setLayoutY(400);
+        startAfterWon.setStyle("-fx-font-size: 40pt;");
 
-        wonPane.getChildren().add(startButton);
+        wonPane.getChildren().add(startAfterWon);
         wonPane.getChildren().add(winningText);
+        wonPane.setStyle("-fx-background-color: #bada55");
         wonPane.setVisible(false);
 
         Text lostText = new Text("Dumpfbacke! verloren!");
         lostText.setStyle("-fx-font-size: 40pt;");
-        lostText.setLayoutX(650);
+        lostText.setLayoutX(400);
         lostText.setLayoutY(300);
 
-        Button startButton2 = new Button("Back to the future!");
-        startButton2.setLayoutX(650);
-        startButton2.setLayoutY(400);
-        startButton2.setStyle("-fx-font-size: 40pt;");
+        startAfterLost = new Button("Versuch es noch mal!");
+        startAfterLost.setLayoutX(400);
+        startAfterLost.setLayoutY(400);
+        startAfterLost.setStyle("-fx-font-size: 40pt;");
 
-        lostPane.getChildren().add(startButton2);
+        lostPane.getChildren().add(startAfterLost);
         lostPane.getChildren().add(lostText);
+        lostPane.setStyle("-fx-background-color: #bada55");
         lostPane.setVisible(false);
 
         gamePane.getChildren().add(car);
 
         rootPane.getChildren().add(gamePane);
         rootPane.getChildren().add(debugPane);
-        rootPane.getChildren().add(wonPane);
         rootPane.getChildren().add(lostPane);
+        rootPane.getChildren().add(wonPane);
     }
 
     public Scene getScene() {

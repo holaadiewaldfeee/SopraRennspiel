@@ -94,7 +94,7 @@ public class Car {
     }
 
     private void playSound() {
-        System.out.println("sound is " + (Math.abs(speed) >= 0.05 ? "playing" : "not Playing"));
+        // System.out.println("sound is " + (Math.abs(speed) >= 0.05 ? "playing" : "not Playing"));
         if (Math.abs(speed) >= 0.05) {
             sound.playSound();
         } else {
