@@ -47,7 +47,6 @@ public class Car {
 
     public void update(double deltaTime) {
         accelerate(deltaTime);
-        System.out.println(speed);
         calculateResistance(deltaTime);
         if(Math.abs(speed) <= 0.05) speed = 0;
         playSound();

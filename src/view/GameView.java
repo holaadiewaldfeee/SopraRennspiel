@@ -19,7 +19,6 @@ import model.GameModel;
 
 public class GameView implements View {
 
-    public static boolean checkPoint = false;
     private static Rectangle startLine;
     private static Rectangle startLineBounds;
     private static Rectangle checkLineBounds;
@@ -88,7 +87,10 @@ public class GameView implements View {
         startLineBounds = getStartLineBounds();
         checkLineBounds = getCheckLineBounds();
 
-        checkpointLine = getCheckLine();
+        checkpointLine = new Rectangle(10, 100);
+        checkpointLine.setLayoutX(650);
+        checkpointLine.setLayoutY(650);
+        checkpointLine.setFill(Color.ORANGERED);
 
         gamePane.getChildren().add(border);
         gamePane.getChildren().add(ellipse);
@@ -135,8 +137,10 @@ public class GameView implements View {
             i++;
 
         }
-        if (checkPoint){
 
+        if (GameModel.checkpointPassed){
+            checkpointLine.setFill(Color.YELLOWGREEN);
+            baum.setFill(new ImagePattern(new Image("resources/racetrack/baum+.png")));
         }
 
         int seconds = (int) GameModel.roundTime % 60;
@@ -189,16 +193,6 @@ public class GameView implements View {
     }
 
     public static Rectangle getCheckLine() {
-        checkpointLine = new Rectangle(10, 100);
-        checkpointLine.setLayoutX(650);
-        checkpointLine.setLayoutY(650);
-        if (checkPoint) {
-            checkpointLine.setFill(Color.YELLOWGREEN);
-
-        }else{
-
-             checkpointLine.setFill(Color.ORANGERED);
-        }
         return checkpointLine;
     }
 }

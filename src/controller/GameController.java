@@ -33,7 +33,7 @@ public class GameController implements Controller {
         double tempX = sL.getLayoutX() + sL.getWidth() / 2;
         double tempY = sL.getLayoutY() + sL.getHeight();
         if (Math.abs(brumm.getMidPoint().getX() - tempX) < 5 &&
-                brumm.getMidPoint().getY() > sL.getY() &&
+                brumm.getMidPoint().getY() > sL.getLayoutY() &&
                 brumm.getMidPoint().getY() < tempY) {
             GameModel.startRound();
         }
@@ -42,10 +42,9 @@ public class GameController implements Controller {
         double tempCX = cL.getLayoutX() + cL.getWidth() / 2;
         double tempCY = cL.getLayoutY() + cL.getHeight();
         if (Math.abs(brumm.getMidPoint().getX() - tempCX) < 5 &&
-                brumm.getMidPoint().getY() > cL.getY() &&
+                brumm.getMidPoint().getY() > cL.getLayoutY() &&
                 brumm.getMidPoint().getY() < tempCY) {
-            GameView.checkPoint = true;
-
+            GameModel.checkpointPassed = true;
         }
 
         Ellipse ell = GameView.getEllipse();

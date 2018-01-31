@@ -21,7 +21,7 @@ public class GameModel {
 
     public static double roundTime = 0;
     private static boolean roundStarted = false;
-    public static boolean gameRunning = true;
+    public static boolean checkpointPassed = false;
 
     /**
      * Creates a gameModel, that handles most of the actions
@@ -101,13 +101,4 @@ public class GameModel {
         roundStarted = false;
     }
 
-    public static void pauseTime() {
-        if (gameRunning) {
-            stopRound();
-            gameRunning = false;
-        } else {
-            startRound();
-            gameRunning = true;
-        }
-    }
 }
