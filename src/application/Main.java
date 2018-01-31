@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 
 /*todo:
-2) Kollision: mit den obstacles und mit den linien muss noch rein( nur check noch, farb ändern?)
 3) Totalschaden: bei zu hoher geschwindigkeit muss das auto boom kaputt gehen und game over dialog
 4) game over dialog und game won dialog
 5) (solala gelöst :) ) auto physik: rollwiderstand (gras und straße unterscheiden) und strömungswiderstand und ausrollen und beschleunigen

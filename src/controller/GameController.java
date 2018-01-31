@@ -63,13 +63,12 @@ public class GameController implements Controller {
                     brumm.getHeight());
             t2.setRotate(brumm.getDirection());
             Shape s = Shape.intersect(t, t2);
-            if(!s.getLayoutBounds().isEmpty()){
-            //if(t.getBoundsInParent().intersects(t2.getBoundsInParent())){
+            if (!s.getLayoutBounds().isEmpty()) {
+                if (Math.abs(brumm.getSpeed()) > 2) {
+                    GameView.lostPane.setVisible(true);
+                }
                 GameModel.getCar().setSpeed(0);
             }
-            //System.out.println(s);
-            //System.out.println(s.getLayoutBounds());
-            // System.out.println(s.getLayoutBounds().isEmpty());
             t.getBoundsInParent();
             // s.setFill(Color.MAGENTA);
             // GameView.debugPane.getChildren().add(s);
@@ -116,9 +115,11 @@ public class GameController implements Controller {
                     }
                     if (e.getCode() == KeyCode.R) {
                         //System.out.println("reset Game");
+                        GameModel.getCar().sound.stopSound();
                         newGame();
                         gameView.setupGameWindow();
-                        Car.sound.pauseSound();
+
+                        GameModel.checkpointPassed = false;
                     }
                     if (e.getCode() == KeyCode.ESCAPE) {
                         System.out.println("hadebye");

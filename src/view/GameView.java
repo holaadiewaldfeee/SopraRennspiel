@@ -1,6 +1,7 @@
 package view;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -33,6 +34,8 @@ public class GameView implements View {
     private Rectangle car;
     private Pane gamePane;
     public static Pane debugPane;
+    public static Pane wonPane;
+    public static Pane lostPane;
     private Text time;
 
     public GameView() {
@@ -50,6 +53,8 @@ public class GameView implements View {
 
         gamePane = new Pane();
         debugPane = new Pane();
+        wonPane = new Pane();
+        lostPane = new Pane();
 
         time = new Text("00:00");
         time.setLayoutX(82);
@@ -116,10 +121,40 @@ public class GameView implements View {
 
         car = new Rectangle(1, 1);
 
+        Text winningText = new Text("Herzlichen Gluckwunsch!");
+        winningText.setStyle("-fx-font-size: 40pt;");
+        winningText.setLayoutX(650);
+        winningText.setLayoutY(300);
+
+        Button startButton = new Button("Back to the future!");
+        startButton.setLayoutX(650);
+        startButton.setLayoutY(400);
+        startButton.setStyle("-fx-font-size: 40pt;");
+
+        wonPane.getChildren().add(startButton);
+        wonPane.getChildren().add(winningText);
+        wonPane.setVisible(false);
+
+        Text lostText = new Text("Dumpfbacke! verloren!");
+        lostText.setStyle("-fx-font-size: 40pt;");
+        lostText.setLayoutX(650);
+        lostText.setLayoutY(300);
+
+        Button startButton2 = new Button("Back to the future!");
+        startButton2.setLayoutX(650);
+        startButton2.setLayoutY(400);
+        startButton2.setStyle("-fx-font-size: 40pt;");
+
+        lostPane.getChildren().add(startButton2);
+        lostPane.getChildren().add(lostText);
+        lostPane.setVisible(false);
+
         gamePane.getChildren().add(car);
 
         rootPane.getChildren().add(gamePane);
         rootPane.getChildren().add(debugPane);
+        rootPane.getChildren().add(wonPane);
+        rootPane.getChildren().add(lostPane);
     }
 
     public Scene getScene() {

@@ -23,4 +23,8 @@ public class Sound {
     public void pauseSound() {
         player.pause();
     }
+
+    public void stopSound(){
+        player.stop();
+    }
 }

@@ -39,7 +39,6 @@ public class GameModel {
      * @return the initialized car
      */
     public static Car initializeCar() {
-
         //initialize a new car and give it the init values set in the static variables
         car = new Car();
         return car;
