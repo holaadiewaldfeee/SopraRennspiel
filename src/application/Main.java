@@ -8,15 +8,6 @@ import model.GameModel;
 import java.util.ArrayList;
 
 
-
-/*todo:
-3) Totalschaden: bei zu hoher geschwindigkeit muss das auto boom kaputt gehen und game over dialog
-7) Unit Tests
- */
-
-
-
-
 public class Main extends Application {
 
     private long oldTime;

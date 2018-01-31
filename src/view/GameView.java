@@ -122,7 +122,7 @@ public class GameView implements View {
 
         car = new Rectangle(1, 1);
 
-        Text winningText = new Text("Herzlichen Gluckwunsch!");
+        Text winningText = new Text("Herzlichen Glückwunsch!");
         winningText.setStyle("-fx-font-size: 40pt;");
         winningText.setLayoutX(400);
         winningText.setLayoutY(300);
@@ -137,7 +137,7 @@ public class GameView implements View {
         wonPane.setStyle("-fx-background-color: #bada55");
         wonPane.setVisible(false);
 
-        Text lostText = new Text("Dumpfbacke! verloren!");
+        Text lostText = new Text("Verloren!");
         lostText.setStyle("-fx-font-size: 40pt;");
         lostText.setLayoutX(400);
         lostText.setLayoutY(300);

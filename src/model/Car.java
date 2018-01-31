@@ -50,10 +50,11 @@ public class Car {
     }
 
     public void update(double deltaTime) {
+        if (damage) return;
         accelerate(deltaTime);
         calculateResistance(deltaTime);
         if (Math.abs(speed) <= 0.05) speed = 0;
-        //playSound();
+        playSound();
 
         this.position.x += Math.cos(Math.toRadians(this.direction) + Math.PI / 2) * this.speed;
         this.position.y += Math.sin(Math.toRadians(this.direction) + Math.PI / 2) * this.speed;
@@ -150,7 +151,7 @@ public class Car {
     }
 
     public Sound getSound() {
-        return sound;
+        return damage ? crashSound : sound;
     }
 
     public Vector getMidPoint() {

@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
 import model.Car;
 import model.GameModel;
 import model.Obstacle;
+import sun.security.x509.GeneralName;
 import view.GameView;
 import view.View;
 
@@ -41,17 +42,17 @@ public class GameController implements Controller {
                 brumm.getMidPoint().getY() < tempY) {
             if (GameModel.checkpointPassed && GameModel.roundStarted) {
                 GameView.wonPane.setVisible(true);
-                GameModel.getCar().getSound().stopSound();
                 GameModel.stopRound();
 
                 int seconds = (int) GameModel.roundTime % 60;
                 int minute = (int) (GameModel.roundTime / 60);
-                Text time = new Text(String.format("%02d:%02d", minute, seconds));
+                Text time = new Text(String.format("Deine Zeit %02d:%02d", minute, seconds));
 
                 time.setLayoutX(450);
                 time.setLayoutY(200);
                 time.setStyle("-fx-font-size: 40pt;");
                 GameView.wonPane.getChildren().add(time);
+                GameModel.getCar().getSound().stopSound();
             } else {
                 GameModel.startRound();
             }
@@ -72,7 +73,7 @@ public class GameController implements Controller {
         brumm.onAsphalt = ell.contains(brumm.getMidPoint().getX(), brumm.getMidPoint().getY()) &&
                 !(ell2.contains(brumm.getMidPoint().getX(), brumm.getMidPoint().getY()));
 
-        System.out.println(brumm.getSpeed());
+       // System.out.println(brumm.getSpeed());
 
         for (Obstacle ob : GameModel.getObstacles()) {
             Rectangle t = new Rectangle(ob.getX(), ob.getY(), ob.getWidth(), ob.getHeight());
@@ -85,8 +86,9 @@ public class GameController implements Controller {
             if (!s.getLayoutBounds().isEmpty()) {
                 if (Math.abs(brumm.getSpeed()) > brumm.crashesAt) {
                     GameView.lostPane.setVisible(true);
-                    GameModel.getCar().getSound().playSound();
                     GameModel.getCar().damage = true;
+                    GameModel.stopRound();
+                    GameModel.getCar().getSound().playSound();
                 }
                 GameModel.getCar().crash();
             }

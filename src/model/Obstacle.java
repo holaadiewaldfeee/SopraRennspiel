@@ -47,8 +47,12 @@ public class Obstacle {
 
         this.position = new Vector(x, y);
         size = new Vector(30, 30);
+    }
+
+    public void setLookImage() {
         look = new Image("resources/obstacle/cone_straight.png");
     }
+
 
     public void update() {}
 

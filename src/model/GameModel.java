@@ -51,6 +51,7 @@ public class GameModel {
         //create obstacles
         do {
             Obstacle o = new Obstacle();
+            o.setLookImage();
             //System.out.println(o);
             boolean genugabstand = true;
             for (Obstacle oTemp : obstaclesList) {
