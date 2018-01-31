@@ -23,11 +23,14 @@ public class Car {
     private Vector position;
     private Image look;
     //v soll speed sein aber sonst wird null
-    //private float v = 1.0f;
 
+    //private float v = 1.0f;
     public static Sound sound;
     public static boolean damage = false;
     public static boolean onAsphalt = true;
+
+    /// Speed at whitch the car will total
+    public float crashesAt = 4;
 
     Car() {
         speed = 0.0f;

@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.scene.text.Text;
 import model.Car;
 import model.GameModel;
 import model.Obstacle;
@@ -40,6 +41,16 @@ public class GameController implements Controller {
                 brumm.getMidPoint().getY() < tempY) {
             if (GameModel.checkpointPassed && GameModel.roundStarted) {
                 GameView.wonPane.setVisible(true);
+                GameModel.stopRound();
+
+                int seconds = (int) GameModel.roundTime % 60;
+                int minute = (int) (GameModel.roundTime / 60);
+                Text time = new Text(String.format("%02d:%02d", minute, seconds));
+
+                time.setLayoutX(450);
+                time.setLayoutY(200);
+                time.setStyle("-fx-font-size: 40pt;");
+                GameView.wonPane.getChildren().add(time);
             } else {
                 GameModel.startRound();
             }
@@ -60,6 +71,8 @@ public class GameController implements Controller {
         brumm.onAsphalt = ell.contains(brumm.getMidPoint().getX(), brumm.getMidPoint().getY()) &&
                 !(ell2.contains(brumm.getMidPoint().getX(), brumm.getMidPoint().getY()));
 
+        System.out.println(brumm.getSpeed());
+
         for (Obstacle ob : GameModel.getObstacles()) {
             Rectangle t = new Rectangle(ob.getX(), ob.getY(), ob.getWidth(), ob.getHeight());
             Rectangle t2 = new Rectangle(brumm.getX() - brumm.getWidth() / 2,
@@ -69,7 +82,7 @@ public class GameController implements Controller {
             t2.setRotate(brumm.getDirection());
             Shape s = Shape.intersect(t, t2);
             if (!s.getLayoutBounds().isEmpty()) {
-                if (Math.abs(brumm.getSpeed()) > 2) {
+                if (Math.abs(brumm.getSpeed()) > brumm.crashesAt) {
                     GameView.lostPane.setVisible(true);
                 }
                 GameModel.getCar().setSpeed(0);
