@@ -64,7 +64,7 @@ public class GameView implements View {
         border.setCenter(imgView);
 
         timeBack = new Rectangle(50, 15, 150, 150);
-        timeBack.setFill(new ImagePattern(new Image("resources/stoppuhr.png")));
+        timeBack.setFill(new ImagePattern(new Image("resources/racetrack/stoppuhr.png")));
 
         baum = new Rectangle(450, 250, 350, 350);
         baum.setFill(new ImagePattern(new Image("resources/racetrack/baum.png")));
@@ -123,7 +123,6 @@ public class GameView implements View {
 
     public void render(GameModel m) {
         Car c = m.getCar();
-        c.update();
         car.relocate(c.getX(), c.getY());
         car.setScaleX(c.getWidth());
         car.setScaleY(c.getHeight());
@@ -134,6 +133,9 @@ public class GameView implements View {
         for (Obstacle ob : GameModel.getObstacles()) {
             Obstacle o = m.getObstacles().get(i);
             i++;
+
+        }
+        if (checkPoint){
 
         }
 
@@ -182,7 +184,7 @@ public class GameView implements View {
         startLine.setLayoutX(650);
         startLine.setLayoutY(50);
         startLine.setFill(Color.WHITESMOKE);
-        startLine.setFill(new ImagePattern(new Image("resources/lines/barrier_white.png")));
+        //startLine.setFill(new ImagePattern(new Image("resources/lines/barrier_white.png")));
         return startLine;
     }
 
@@ -190,13 +192,13 @@ public class GameView implements View {
         checkpointLine = new Rectangle(10, 100);
         checkpointLine.setLayoutX(650);
         checkpointLine.setLayoutY(650);
-        checkpointLine.setFill(Color.ORANGERED);
-        return checkpointLine;
-    }
-
-    public static void changeCheckpoint() {
         if (checkPoint) {
             checkpointLine.setFill(Color.YELLOWGREEN);
+
+        }else{
+
+             checkpointLine.setFill(Color.ORANGERED);
         }
+        return checkpointLine;
     }
 }

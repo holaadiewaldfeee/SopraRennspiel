@@ -8,56 +8,93 @@ import javafx.scene.image.Image;
  */
 public class Car {
 
-    private int mass;
-    private float speed;
+    /// Private final fields
+    private final float MASS = 1200.0f;
+    private final Vector size;
+    private final double ROLLINGRESISTANCESTREET = (0.015f * 9.81f); //Rollwiederstand straße
+    private final double ROLLINGRESISTANCEGRAS = (0.05f * 9.81f); // Rollwiderstand gras
+    private final double MAXSPEEDFORDAMAGE = 100000.0f;
+
+
+    /// private car parameters
+    private double speed;
+    private int isAccelerating;
     private float direction;
     private Vector position;
-    private Vector size;
     private Image look;
-    public static Sound sound;
     //v soll speed sein aber sonst wird null
-    private float v = 1.0f;
+    //private float v = 1.0f;
+
+    public static Sound sound;
     public static boolean damage = false;
+    public static boolean onAsphalt = true;
 
-    private final float ROLLINGRESISTANCESTREET = (0.015f * 981.0f) * 1200.0f; //Rollwiederstand straße
-    private final float ROLLINGRESISTANCEGRAS = (0.05f * 981.0f) * 1200.0f; // Rollwiderstand gras
-    private final float MAXSPEEDFORDAMAGE = 100000.0f;
-    // private final float FLOWRESISTANCE = 0.28f * 2.19f * (0.5f*1.2041f) * (Math.pow( (float) v , (float) 2.0f));
-
-
-    //mal das gewicht beim rollwiderstand und wenn luft dabei dann alles geteilt durch masse
-
-
-    public Car() {
-        mass = 1200;
+    Car() {
         speed = 0.0f;
         direction = 90;
         position = new Vector(615.0d, 100.0d);
         size = new Vector(2.027 * 10.0d, 4.255 * 10.0d);
-        if (!damage) {
-            look = new Image("resources/car/car_yellow_1.png");
-        } else {
-            //todo: ein damage car basteln png aber nicht hier das image changen das wäre doof sondern wos upgedated wird
-            look = new Image("resources/car/car_black_1.png");
-        }
+        //        if (!damage) {
+        look = new Image("resources/car/car_yellow_1.png");
+        //        } else {
+        //todo: ein damage car basteln png aber nicht hier das image changen das wäre doof sondern wos upgedated wird
+        //   look = new Image("resources/car/car_black_1.png");
+        //        }
 
         sound = new Sound("src/resources/sound/345925__1histori__car-engine.wav");
+        //sound = new Sound("src/resources/sound/Game_Over.wav");
     }
 
-    public void update() {
-        if (Math.abs(speed) > 0.005f) {
-            speed *= 0.99f;
-            sound.playSound();
-        } else {
-            speed = 0;
-            sound.pauseSound();
-        }
+    public void update(double deltaTime) {
+        accelerate(deltaTime);
+        calculateResistance(deltaTime);
+        playSound();
+
         this.position.x += Math.cos(Math.toRadians(this.direction) + Math.PI / 2) * this.speed;
         this.position.y += Math.sin(Math.toRadians(this.direction) + Math.PI / 2) * this.speed;
+
+        //not out of stage
+        if (this.position.x >= 1300) {
+            this.position.x = 1299;
+        }
+        if (this.position.x <= 0) {
+            this.position.x = 0;
+        }
+        if (this.position.y >= 800) {
+            this.position.y = 799;
+        }
+        if (this.position.y <= 0) {
+            this.position.y = 0;
+        }
     }
 
-    public void setSpeed(float x) {
-        this.speed = x;
+    private void accelerate(double deltaTime) {
+        // The acceleration of a golf 7 is ~3.2 m/s²
+        if (speed >= -10.0 && this.isAccelerating != 0) {
+            speed = speed + isAccelerating * 3.2f * 20 * deltaTime;
+        }
+    }
+
+    public void isAccelerating(int isIt) {
+        this.isAccelerating = isIt;
+    }
+
+    private void calculateResistance(double deltaTime) {
+        if (onAsphalt) {
+            speed = speed * (1 - ROLLINGRESISTANCESTREET * deltaTime);
+        } else {
+            speed = speed * (1 - ROLLINGRESISTANCEGRAS * deltaTime);
+        }
+        double f_resist = 0.28f * 2.19f * (0.5f * 1.2041f) * (Math.pow((float) speed, 2.0f));
+        speed = speed * (1 - f_resist * deltaTime);
+    }
+
+    private void playSound() {
+        if (Math.abs(speed) >= 0.05) {
+            sound.playSound();
+        } else {
+            sound.pauseSound();
+        }
     }
 
     public void rotate(float x) {
@@ -68,10 +105,6 @@ public class Car {
 
     public double getSpeed() {
         return speed;
-    }
-
-    public Vector getPosition() {
-        return position;
     }
 
     public double getX() {

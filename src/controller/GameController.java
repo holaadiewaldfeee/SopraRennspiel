@@ -2,11 +2,13 @@ package controller;
 
 
 import javafx.scene.input.KeyCode;
+import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import model.Car;
 import model.GameModel;
 import view.GameView;
 import view.View;
+
 import java.util.ArrayList;
 
 public class GameController implements Controller {
@@ -24,25 +26,33 @@ public class GameController implements Controller {
 
     @Override
     public void update() {
+
         Car brumm = GameModel.getCar();
+
         Rectangle sL = GameView.getStartLine();
-        double tX = sL.getLayoutX()+ sL.getWidth()/2;
-        double tY = sL.getLayoutY() + sL.getHeight();
-        if(Math.abs(brumm.getMidPoint().getX() - tX) < 5 &&
+        double tempX = sL.getLayoutX() + sL.getWidth() / 2;
+        double tempY = sL.getLayoutY() + sL.getHeight();
+        if (Math.abs(brumm.getMidPoint().getX() - tempX) < 5 &&
                 brumm.getMidPoint().getY() > sL.getY() &&
-                brumm.getMidPoint().getY() < tY){
+                brumm.getMidPoint().getY() < tempY) {
             GameModel.startRound();
         }
         //todo: hier versuchen checkpoint linie farbe zu ändern
-       /* Rectangle cL = GameView.getCheckLine();
-        double cX = cL.getLayoutX()+ cL.getWidth()/2;
-        double cY = cL.getLayoutY() + cL.getHeight();
-        if(Math.abs(brumm.getMidPoint().getX() - cX) < 5 &&
+        Rectangle cL = GameView.getCheckLine();
+        double tempCX = cL.getLayoutX() + cL.getWidth() / 2;
+        double tempCY = cL.getLayoutY() + cL.getHeight();
+        if (Math.abs(brumm.getMidPoint().getX() - tempCX) < 5 &&
                 brumm.getMidPoint().getY() > cL.getY() &&
-                brumm.getMidPoint().getY() < cY){
-           GameView.checkPoint = true;
-           GameView.changeCheckpoint();
-        }*/
+                brumm.getMidPoint().getY() < tempCY) {
+            GameView.checkPoint = true;
+
+        }
+
+        Ellipse ell = GameView.getEllipse();
+        Ellipse ell2 = GameView.getEllipse2();
+        brumm.onAsphalt = ell.contains(brumm.getMidPoint().getX(), brumm.getMidPoint().getY()) &&
+                !(ell2.contains(brumm.getMidPoint().getX(), brumm.getMidPoint().getY()));
+
         gameView.render(gameModel);
     }
 
@@ -58,12 +68,12 @@ public class GameController implements Controller {
             //System.out.println("right");
 
         }
+        gameModel.getCar().isAccelerating(0);
         if (input.contains("UP")) {
-            gameModel.getCar().setSpeed(-1);
+            gameModel.getCar().isAccelerating(-1);
             //System.out.println("up");
-        }
-        if (input.contains("DOWN")) {
-            gameModel.getCar().setSpeed(1);
+        } else if (input.contains("DOWN")) {
+            gameModel.getCar().isAccelerating(1);
             //System.out.println("down");
         }
     }
@@ -76,6 +86,7 @@ public class GameController implements Controller {
                     if (e.getCode() == KeyCode.P) {
                         //System.out.println("pause Game");
                         MainController.changeController(2);
+                        GameModel.stopRound();
                     }
                     if (e.getCode() == KeyCode.R) {
                         //System.out.println("reset Game");

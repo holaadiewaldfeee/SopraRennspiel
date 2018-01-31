@@ -38,7 +38,7 @@ public class StartView implements View {
         startButton.setStyle("-fx-font-size: 40pt;");
 
         BorderPane start = new BorderPane();
-        ImageView imgView = new ImageView(new Image("resources/startView11l.png"));
+        ImageView imgView = new ImageView(new Image("resources/startViewImages/startView11l.png"));
         imgView.setFitHeight(800);
         imgView.setFitWidth(1300);
         start.setCenter(imgView);

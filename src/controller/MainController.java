@@ -23,6 +23,7 @@ public class MainController {
         this.controllers = controllers;
         changeController(index);
 
+        //other sound
         //s = new Sound("src/resources/sound/Eminem.wav");
         //s.playSound();
     }

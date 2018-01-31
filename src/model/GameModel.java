@@ -3,6 +3,7 @@ package model;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import view.GameView;
+
 import java.util.ArrayList;
 
 /**
@@ -72,7 +73,7 @@ public class GameModel {
 
     public static void update(double time) {
         roundTime += roundStarted ? time : 0;
-        //GameView.changeCheckpoint();
+        car.update(time);
     }
 
 
@@ -87,7 +88,7 @@ public class GameModel {
     }
 
 
-    public static void resetTime(){
+    public static void resetTime() {
         roundStarted = false;
         roundTime = 0;
     }
@@ -99,9 +100,14 @@ public class GameModel {
     public static void stopRound() {
         roundStarted = false;
     }
+
     public static void pauseTime() {
-        if(gameRunning) {
+        if (gameRunning) {
+            stopRound();
             gameRunning = false;
+        } else {
+            startRound();
+            gameRunning = true;
         }
     }
 }

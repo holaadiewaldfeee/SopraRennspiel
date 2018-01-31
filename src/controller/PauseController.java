@@ -22,7 +22,6 @@ public class PauseController implements Controller {
     public void update(){
         pauseView.render(gameModel);
         GameModel.getCar().getSound().pauseSound();
-        GameModel.pauseTime();
     }
 
     //handle input
@@ -32,6 +31,7 @@ public class PauseController implements Controller {
         pauseView.backToGame.setOnAction(e -> {
             System.out.println("play game");
             MainController.changeController(1);
+            GameModel.startRound();
         });
 
         pauseView.getScene().setOnKeyPressed(e -> {
@@ -42,6 +42,7 @@ public class PauseController implements Controller {
             if (e.getCode() == KeyCode.ENTER || e.getCode() == KeyCode.P) {
                 System.out.println("play");
                 MainController.changeController(1);
+                GameModel.startRound();
             }
 
         });

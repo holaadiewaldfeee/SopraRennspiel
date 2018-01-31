@@ -35,7 +35,7 @@ public class PauseView implements View {
         backToGame.setStyle("-fx-font-size: 40pt;");
 
         BorderPane paus = new BorderPane();
-        ImageView imgView2 = new ImageView(new Image("resources/pauseView11l.png"));
+        ImageView imgView2 = new ImageView(new Image("resources/startViewImages/pauseView11l.png"));
         imgView2.setFitHeight(800);
         imgView2.setFitWidth(1300);
         paus.setCenter(imgView2);
