@@ -34,12 +34,7 @@ public class Car {
         direction = 90;
         position = new Vector(615.0d, 100.0d);
         size = new Vector(2.027 * 10.0d, 4.255 * 10.0d);
-        //        if (!damage) {
         look = new Image("resources/car/car_yellow_1.png");
-        //        } else {
-        //todo: ein damage car basteln png aber nicht hier das image changen das wäre doof sondern wos upgedated wird
-        //   look = new Image("resources/car/car_black_1.png");
-        //        }
 
         sound = new Sound("src/resources/sound/345925__1histori__car-engine.wav");
         //sound = new Sound("src/resources/sound/Game_Over.wav");
@@ -48,7 +43,7 @@ public class Car {
     public void update(double deltaTime) {
         accelerate(deltaTime);
         calculateResistance(deltaTime);
-        if(Math.abs(speed) <= 0.05) speed = 0;
+        if (Math.abs(speed) <= 0.05) speed = 0;
         playSound();
 
         this.position.x += Math.cos(Math.toRadians(this.direction) + Math.PI / 2) * this.speed;
@@ -114,6 +109,10 @@ public class Car {
 
     public double getSpeed() {
         return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
     }
 
     public double getX() {

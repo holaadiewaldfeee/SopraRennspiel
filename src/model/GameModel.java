@@ -83,7 +83,6 @@ public class GameModel {
     }
 
     public static ArrayList<Obstacle> getObstacles() {
-
         return obstaclesList;
     }
 

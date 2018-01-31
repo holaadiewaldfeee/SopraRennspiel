@@ -2,10 +2,13 @@ package controller;
 
 
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import model.Car;
 import model.GameModel;
+import model.Obstacle;
 import view.GameView;
 import view.View;
 
@@ -52,6 +55,30 @@ public class GameController implements Controller {
         brumm.onAsphalt = ell.contains(brumm.getMidPoint().getX(), brumm.getMidPoint().getY()) &&
                 !(ell2.contains(brumm.getMidPoint().getX(), brumm.getMidPoint().getY()));
 
+        for (Obstacle ob : GameModel.getObstacles()) {
+            Rectangle t = new Rectangle(ob.getX(), ob.getY(), ob.getWidth(), ob.getHeight());
+            Rectangle t2 = new Rectangle(brumm.getX() - brumm.getWidth() / 2,
+                    brumm.getY() - brumm.getHeight() / 2,
+                    brumm.getWidth(),
+                    brumm.getHeight());
+            t2.setRotate(brumm.getDirection());
+            Shape s = Shape.intersect(t, t2);
+            if(!s.getLayoutBounds().isEmpty()){
+            //if(t.getBoundsInParent().intersects(t2.getBoundsInParent())){
+                GameModel.getCar().setSpeed(0);
+            }
+            //System.out.println(s);
+            //System.out.println(s.getLayoutBounds());
+            // System.out.println(s.getLayoutBounds().isEmpty());
+            t.getBoundsInParent();
+            // s.setFill(Color.MAGENTA);
+            // GameView.debugPane.getChildren().add(s);
+        }
+
+        Rectangle auto = new Rectangle(brumm.getX(), brumm.getY(), brumm.getWidth(), brumm.getHeight());
+        auto.setFill(Color.TRANSPARENT);
+        auto.setRotate(brumm.getDirection());
+        GameView.debugPane.getChildren().add(auto);
         gameView.render(gameModel);
     }
 

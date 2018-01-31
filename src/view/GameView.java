@@ -32,6 +32,7 @@ public class GameView implements View {
     private StackPane rootPane;
     private Rectangle car;
     private Pane gamePane;
+    public static Pane debugPane;
     private Text time;
 
     public GameView() {
@@ -48,6 +49,7 @@ public class GameView implements View {
     public void setupGameWindow() {
 
         gamePane = new Pane();
+        debugPane = new Pane();
 
         time = new Text("00:00");
         time.setLayoutX(82);
@@ -117,6 +119,7 @@ public class GameView implements View {
         gamePane.getChildren().add(car);
 
         rootPane.getChildren().add(gamePane);
+        rootPane.getChildren().add(debugPane);
     }
 
     public Scene getScene() {
@@ -125,20 +128,14 @@ public class GameView implements View {
 
     public void render(GameModel m) {
         Car c = m.getCar();
-        car.relocate(c.getX(), c.getY());
+        car.setLayoutX(c.getX());
+        car.setLayoutY(c.getY());
         car.setScaleX(c.getWidth());
         car.setScaleY(c.getHeight());
         car.setRotate(c.getDirection());
         car.setFill(new ImagePattern(c.getLook()));
 
-        int i = 0;
-        for (Obstacle ob : GameModel.getObstacles()) {
-            Obstacle o = m.getObstacles().get(i);
-            i++;
-
-        }
-
-        if (GameModel.checkpointPassed){
+        if (GameModel.checkpointPassed) {
             checkpointLine.setFill(Color.YELLOWGREEN);
             baum.setFill(new ImagePattern(new Image("resources/racetrack/baum+.png")));
         }
