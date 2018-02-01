@@ -5,7 +5,10 @@ import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import java.io.File;
 
-
+/**
+ * Because every game needs a soundtrack
+ *                          - TL
+ */
 public class Sound {
 
     private MediaPlayer player;

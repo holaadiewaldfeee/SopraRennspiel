@@ -7,7 +7,9 @@ import javafx.stage.Stage;
 import model.GameModel;
 import java.util.ArrayList;
 
-
+/**
+ * Main entrance point into the game. The javafx application will launch a screen and show the scenes to the user.
+ */
 public class Main extends Application {
 
     private long oldTime;

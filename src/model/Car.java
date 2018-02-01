@@ -5,6 +5,8 @@ import javafx.scene.image.Image;
 
 /**
  * Class car represents the race-car in the race game.
+ *
+ * @author Sabrina B.
  */
 public class Car {
 
@@ -23,7 +25,6 @@ public class Car {
     private Vector position;
     private Image look;
     private Image crashLook;
-    //v soll speed sein aber sonst wird null
 
     //private float v = 1.0f;
     public static Sound sound;

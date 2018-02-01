@@ -56,14 +56,6 @@ public class Obstacle {
 
     public void update() {}
 
-    public void setPosition(Vector position) {
-        this.position = position;
-    }
-
-    public Vector getPosition() {
-        return position;
-    }
-
     public double getX() {
         return this.position.getX();
     }

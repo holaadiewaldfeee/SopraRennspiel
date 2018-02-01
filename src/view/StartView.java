@@ -9,13 +9,15 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import model.GameModel;
 
+/**
+ * The games start view. The initial screen the player will see when opening the game.
+ */
 public class StartView implements View {
 
     private Scene scene;
     private StackPane rootPane;
     private Pane gamePane;
     public Button startButton;
-
 
     public StartView() {
         rootPane = new StackPane();
@@ -24,9 +26,9 @@ public class StartView implements View {
     }
 
 
-
-    /** Sets up start window
-    @author
+    /**
+     * Sets up start window
+     * @author Sabrina Böhm
      */
     public void setupGameWindow() {
 

@@ -16,6 +16,9 @@ import view.View;
 
 import java.util.ArrayList;
 
+/**
+ * Controller for the main game view to implement the logic for the action loaded racing game!
+ */
 public class GameController implements Controller {
 
     private GameView gameView;
@@ -57,7 +60,8 @@ public class GameController implements Controller {
                 GameModel.startRound();
             }
         }
-        //todo: hier versuchen checkpoint linie farbe zu ändern
+
+        /// if the care has passed the checkpoint the color should change.
         Rectangle cL = GameView.getCheckLine();
         double tempCX = cL.getLayoutX() + cL.getWidth() / 2;
         double tempCY = cL.getLayoutY() + cL.getHeight() * 1.2;

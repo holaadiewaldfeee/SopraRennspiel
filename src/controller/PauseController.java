@@ -5,7 +5,9 @@ import model.GameModel;
 import view.PauseView;
 import view.View;
 
-
+/**
+ * The controller reacting to input and handling user interaction in pause mode.
+ */
 public class PauseController implements Controller {
 
     private PauseView pauseView;
@@ -27,12 +29,6 @@ public class PauseController implements Controller {
     //handle input
     @Override
     public void setupInteraction() {
-
-        pauseView.backToGame.setOnAction(e -> {
-            System.out.println("play game");
-            MainController.changeController(1);
-            GameModel.startRound();
-        });
 
         pauseView.getScene().setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ESCAPE) {

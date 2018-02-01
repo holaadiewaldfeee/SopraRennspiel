@@ -28,7 +28,6 @@ public class GameModel {
      * Creates a gameModel, that handles most of the actions
      */
     public GameModel() {
-
         //initialize Car
         car = initializeCar();
         initializeObstacles();
@@ -46,6 +45,9 @@ public class GameModel {
         return car;
     }
 
+    /**
+     * Set up all the obstacles and check if the position is on the road.
+     */
     public static void initializeObstacles() {
         obstaclesList.clear();
         //create obstacles
@@ -73,21 +75,23 @@ public class GameModel {
     }
 
 
+    /**
+     * when the game is running the model should be updated. Otherwise not.
+     *
+     * @param time time difference from the last call to this method.
+     */
     public static void update(double time) {
         roundTime += roundStarted ? time : 0;
        if(!isPaused) car.update(time);
     }
 
-
     public static Car getCar() {
-
         return car;
     }
 
     public static ArrayList<Obstacle> getObstacles() {
         return obstaclesList;
     }
-
 
     public static void resetTime() {
         roundStarted = false;

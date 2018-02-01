@@ -1,7 +1,6 @@
 package view;
 
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -9,12 +8,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import model.GameModel;
 
+/**
+ * Pause view for the action loaded racing game!
+ *
+ * This view is being showed when the player is in the pause. The game will not continue to run.
+ */
 public class PauseView implements View {
 
     private Scene scene;
     private StackPane rootPane;
     private Pane gamePane;
-    public Button backToGame;
 
 
     public PauseView() {
@@ -29,11 +32,6 @@ public class PauseView implements View {
 
         gamePane = new Pane();
 
-        backToGame = new Button("Pause beenden");
-        backToGame.setLayoutX(850);
-        backToGame.setLayoutY(650);
-        backToGame.setStyle("-fx-font-size: 40pt;");
-
         BorderPane paus = new BorderPane();
         ImageView imgView2 = new ImageView(new Image("resources/startViewImages/pauseView11l.png"));
         imgView2.setFitHeight(800);
@@ -41,12 +39,10 @@ public class PauseView implements View {
         paus.setCenter(imgView2);
 
         gamePane.getChildren().add(paus);
-        gamePane.getChildren().add(backToGame);
         rootPane.getChildren().add(gamePane);
     }
 
     public Scene getScene() {
-
         return scene;
     }
 

@@ -15,7 +15,9 @@ import model.Car;
 import model.Obstacle;
 import model.GameModel;
 
-
+/**
+ * Main game view for the action loaded racing game!
+ */
 public class GameView implements View {
 
     private static Rectangle startLine;

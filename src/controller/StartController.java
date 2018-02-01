@@ -5,7 +5,9 @@ import model.GameModel;
 import view.StartView;
 import view.View;
 
-
+/**
+ * The start controller for when the player enters the game.
+ */
 public class StartController implements Controller {
 
     private StartView startView;

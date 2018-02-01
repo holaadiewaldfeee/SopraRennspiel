@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Own implementation of a two dimensional vector.
+ */
 public class Vector {
     double x;
     double y;
